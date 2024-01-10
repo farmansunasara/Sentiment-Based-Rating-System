@@ -1,3 +1,9 @@
 <resources>
     <string name="app_name">My Application</string>
+    <string name="send_message">send now</string>
+    <string name="delete_message">delete</string>
+    <string name="recieve_messagge">Recieve now</string>
+    <string name="profile_image">profile</string>
+    <string name="farmanprofile_image">profile image</string>
+    <string name="farmanprofile_image">Don't have any account ? Register here</string>
 </resources>
