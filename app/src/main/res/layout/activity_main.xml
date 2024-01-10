@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:contentDescription="@string/profile_image"
-    android:background="@drawable/flag"
+    android:background="@drawable/back"
     app:constraint_referenced_tags="#profile"
     tools:context=".MainActivity">
 
@@ -23,8 +23,8 @@
             android:padding="28dp">
 
             <ImageView
-                android:layout_width="600dp"
-                android:layout_height="200dp"
+                android:layout_width="480dp"
+                android:layout_height="271dp"
                 android:adjustViewBounds="true"
                 android:cropToPadding="true"
                 android:src="@drawable/iotbackground" />
@@ -85,7 +85,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:alpha="0.7"
-                android:text="password"
+                android:text="Password"
                 android:textSize="16sp"
                 android:textStyle="bold" />
 
@@ -120,6 +120,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="10dp"/>
 
+
             <com.google.android.material.button.MaterialButton
                 android:layout_width="match_parent"
                 android:layout_height="60dp"
@@ -127,33 +128,25 @@
                 android:textColor="@color/white"
                 android:textSize="20sp"
                 android:textStyle="bold"
-                app:cornerRadius="32dp" />
-            <View
-                android:layout_width="wrap_content"
-                android:layout_height="20dp"/>
+                app:cornerRadius="30dp"
+                />
+                <ScrollView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"/>
+
             <TextView
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="or login with"
-                android:alpha="0.7"
+                android:layout_height="100dp"
                 android:layout_gravity="center"
-                android:textStyle=""/>
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:gravity="center">
-                <TextView android:id="@+id/lnkRegister"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="40dp"
-                    android:text=""
-                    android:gravity="center"
-                    android:textSize="20dp"
-                    android:textColor="#3F51B5"/>
+                android:alpha="0.7"
+                android:padding="30dp"
+                android:text="Don't have any account ? Ragister here " />
 
-            </LinearLayout>
         </LinearLayout>
     </androidx.cardview.widget.CardView>
 
 </RelativeLayout>
+
+
+
+
