@@ -5,14 +5,14 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:contentDescription="@string/profile_image"
-    android:background="@drawable/back"
+    android:background="@drawable/backkkk"
     app:constraint_referenced_tags="#profile"
     tools:context=".MainActivity">
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/my_primary"
+        android:background="@drawable/backk"
         android:alpha="0.7">
 
         <LinearLayout
@@ -146,7 +146,4 @@
     </androidx.cardview.widget.CardView>
 
 </RelativeLayout>
-
-
-
 
