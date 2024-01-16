@@ -139,7 +139,7 @@
                 android:layout_gravity="center"
                 android:alpha="0.7"
                 android:padding="30dp"
-                android:text="Don't have any account ? Ragister here " />
+                android:text="Don't have any account ? Register here " />
 
 
 

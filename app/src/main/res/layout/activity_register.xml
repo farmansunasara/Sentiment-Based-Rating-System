@@ -12,6 +12,15 @@
         android:textAlignment="center"
         android:textSize="25dp"
         android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/lnkLogin"
+        android:layout_width="wrap_content"
+        android:layout_height="100dp"
+        android:layout_gravity="center"
+        android:alpha="0.7"
+        android:padding="30dp"
+        android:text="Already Registered? Login here " />
     <TextView
         android:id="@+id/fstTxt"
         android:layout_width="wrap_content"
@@ -152,14 +161,6 @@
         android:layout_marginLeft="100dp"
         android:text="@string/title" />
 
-    <TextView android:id="@+id/lnkLogin"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="40dp"
-        android:text="Already Registered? Login here"
-        android:gravity="center"
-        android:textSize="20dp"
-        android:textColor="#3F51B5"
-        android:onClick="test"/>
+
 </LinearLayout>
 
