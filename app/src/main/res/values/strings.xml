@@ -16,6 +16,7 @@
     <string name="state">State</string>
     <string name="country">Country</string>
     <string name="pincode">Pincode</string>
+    <string name="adminpanel">Admin</string>
 
 
 </resources>

@@ -3,6 +3,7 @@ package com.example.myapplication;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+import android.widget.ImageView;
 import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
@@ -26,6 +27,8 @@ public class MainActivity extends AppCompatActivity {
         TextView username =(TextView) findViewById(R.id.emaillogin) ;
         TextView password=(TextView) findViewById(R.id.passwordlogin);
         MaterialButton loginbtn =(MaterialButton) findViewById(R.id.loginbtn);
+
+
 
 
         loginbtn.setOnClickListener(new View.OnClickListener() {

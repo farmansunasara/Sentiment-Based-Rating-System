@@ -7,6 +7,7 @@
     android:background="@color/white"
     android:orientation="vertical"
     tools:context=".Admin">
+    <include layout="@layout/toolbar"
     <LinearLayout
         android:paddingTop="50dp"
         android:layout_width="match_parent"
@@ -60,12 +61,14 @@
                 android:layout_height="match_parent"
                 android:orientation="vertical"
                 android:gravity="center">
+
                 <ImageView
                     android:layout_width="64dp"
                     android:layout_height="64dp"
                     android:background="@drawable/circle_red"
-                    android:src="@drawable/cust"
-                    android:padding="15dp"/>
+                    android:padding="15dp"
+                    android:src="@drawable/cust" />
+
                 <View
                     android:layout_width="match_parent"
                     android:layout_height="1dp"
