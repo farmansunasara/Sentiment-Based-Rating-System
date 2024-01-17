@@ -51,7 +51,7 @@
             android:layout_width="130dp"
             android:layout_height="150dp"
             android:layout_margin="10dp"
-            android:id="@+id/managecustomer"
+            android:id="@+id/addproduct"
             app:cardElevation="5dp"
             >
             <LinearLayout
@@ -92,7 +92,7 @@
             android:layout_width="130dp"
             android:layout_height="150dp"
             android:layout_margin="10dp"
-            android:id="@+id/managecustomer"
+            android:id="@+id/viewproduct"
             app:cardElevation="5dp"
             >
             <LinearLayout
@@ -126,7 +126,7 @@
             android:layout_width="130dp"
             android:layout_height="150dp"
             android:layout_margin="10dp"
-            android:id="@+id/managecustomer"
+            android:id="@+id/vieworder"
             app:cardElevation="5dp"
             >
             <LinearLayout
@@ -167,7 +167,7 @@
             android:layout_width="130dp"
             android:layout_height="150dp"
             android:layout_margin="10dp"
-            android:id="@+id/managecustomer"
+            android:id="@+id/manageorder"
             app:cardElevation="5dp"
             >
             <LinearLayout
@@ -201,7 +201,7 @@
             android:layout_width="130dp"
             android:layout_height="150dp"
             android:layout_margin="10dp"
-            android:id="@+id/managecustomer"
+            android:id="@+id/updateproduct"
             app:cardElevation="5dp"
             >
             <LinearLayout
