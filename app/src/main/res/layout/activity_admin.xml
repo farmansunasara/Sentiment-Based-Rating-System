@@ -8,6 +8,7 @@
     android:orientation="vertical"
     tools:context=".Admin">
     <LinearLayout
+        android:paddingTop="50dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
