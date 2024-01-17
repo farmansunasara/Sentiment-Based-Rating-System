@@ -73,6 +73,7 @@
                 android:textSize="16sp"
                 android:textStyle="bold" />
             <EditText
+                android:id="@+id/emaillogin"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:inputType="textEmailAddress"
@@ -90,6 +91,7 @@
                 android:textStyle="bold" />
 
             <EditText
+                android:id="@+id/passwordlogin"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:drawableEnd="@drawable/baseline_account_balance_wallet_24"
@@ -124,12 +126,11 @@
                 <ScrollView
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"/>
-            <Button
+            <com.google.android.material.button.MaterialButton
                 android:id="@+id/loginbtn"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:backgroundTint="@color/my_secondary"
-
                 android:text="Login" />
 
             <TextView
