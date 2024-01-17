@@ -69,10 +69,11 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:alpha="0.7"
-                android:text="Email Address"
+                android:text="@string/email"
                 android:textSize="16sp"
                 android:textStyle="bold" />
             <EditText
+                android:id="@+id/emaillogin"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:inputType="textEmailAddress"
@@ -90,6 +91,7 @@
                 android:textStyle="bold" />
 
             <EditText
+                android:id="@+id/passwordlogin"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:drawableEnd="@drawable/baseline_account_balance_wallet_24"
