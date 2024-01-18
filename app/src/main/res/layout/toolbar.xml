@@ -20,7 +20,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/toolbar_title"
-            android:layout_marginStart="115dp"
+            android:layout_marginStart="20dp"
             android:layout_toEndOf="@+id/left_icon"
             android:text="@string/adminpanel"
             android:textColor="@color/white"

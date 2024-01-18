@@ -67,7 +67,7 @@
                     android:layout_height="64dp"
                     android:background="@drawable/circle_red"
                     android:padding="15dp"
-                    android:src="@drawable/manageproduct" />
+                    android:src="@drawable/producttt" />
 
                 <View
                     android:layout_width="match_parent"
@@ -108,7 +108,7 @@
                     android:layout_width="64dp"
                     android:layout_height="64dp"
                     android:background="@drawable/circle_yellow"
-                    android:src="@drawable/ordertrack"
+                    android:src="@drawable/orderallll"
                     android:padding="15dp"/>
                 <View
                     android:layout_width="match_parent"
@@ -142,7 +142,7 @@
                     android:layout_width="64dp"
                     android:layout_height="64dp"
                     android:background="@drawable/circle_blue"
-                    android:src="@drawable/slider"
+                    android:src="@drawable/imageslide"
                     android:padding="15dp"/>
                 <View
                     android:layout_width="match_parent"
