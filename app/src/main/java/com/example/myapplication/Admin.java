@@ -9,6 +9,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.material.card.MaterialCardView;
+
 public class Admin extends AppCompatActivity {
 
 
@@ -21,12 +23,29 @@ public class Admin extends AppCompatActivity {
 
         ImageView leftIcon = findViewById(R.id.left_icon);
         TextView title =(TextView) findViewById(R.id.toolbar_title);
+        MaterialCardView category = findViewById(R.id.category);
+        MaterialCardView product = findViewById(R.id.product);
 
         leftIcon.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Toast.makeText(Admin.this, "Back",Toast.LENGTH_SHORT).show();
                 Intent intent = new Intent(Admin.this, MainActivity.class);
+                startActivity(intent);
+            }
+        });
+        category.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(Admin.this, com.example.myapplication.category.class);
+                startActivity(intent);
+            }
+        });
+
+        product.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(Admin.this, com.example.myapplication.Add_product_form.class);
                 startActivity(intent);
             }
         });
