@@ -25,6 +25,8 @@ public class Admin extends AppCompatActivity {
         TextView title =(TextView) findViewById(R.id.toolbar_title);
         MaterialCardView category = findViewById(R.id.category);
         MaterialCardView product = findViewById(R.id.product);
+        MaterialCardView vieworder = findViewById(R.id.vieworder);
+
 
         leftIcon.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -46,6 +48,14 @@ public class Admin extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(Admin.this, com.example.myapplication.Add_product_form.class);
+                startActivity(intent);
+            }
+        });
+
+        vieworder.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(Admin.this, com.example.myapplication.view_orders.class);
                 startActivity(intent);
             }
         });
