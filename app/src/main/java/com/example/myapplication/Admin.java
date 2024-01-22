@@ -26,6 +26,9 @@ public class Admin extends AppCompatActivity {
         MaterialCardView category = findViewById(R.id.category);
         MaterialCardView product = findViewById(R.id.product);
         MaterialCardView vieworder = findViewById(R.id.vieworder);
+        MaterialCardView sliderimage = findViewById(R.id.sliderimage);
+        MaterialCardView managecustomer = findViewById(R.id.managecustomer);
+
 
 
         leftIcon.setOnClickListener(new View.OnClickListener() {
@@ -56,6 +59,22 @@ public class Admin extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(Admin.this, com.example.myapplication.view_orders.class);
+                startActivity(intent);
+            }
+        });
+
+        sliderimage.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(Admin.this, com.example.myapplication.slider_image.class);
+                startActivity(intent);
+            }
+        });
+
+        managecustomer.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(Admin.this, com.example.myapplication.Manage_customer.class);
                 startActivity(intent);
             }
         });

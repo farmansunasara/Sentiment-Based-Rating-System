@@ -171,7 +171,7 @@
             android:layout_width="130dp"
             android:layout_height="150dp"
             android:layout_margin="10dp"
-            android:id="@+id/manageorder"
+            android:id="@+id/managecustomer"
             app:cardElevation="5dp"
             >
             <LinearLayout
