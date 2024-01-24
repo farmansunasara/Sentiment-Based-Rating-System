@@ -39,7 +39,7 @@ import com.google.android.material.button.MaterialButton;
         txtstate=findViewById(R.id.txtstate);
         txtcountry=findViewById(R.id.txtcountry);
         txtpincode=findViewById(R.id.txtpincode);
-        btnregister=(MaterialButton) findViewById(R.id.btnregister);
+        btnregister= findViewById(R.id.btnregister);
 
 
         btnregister.setOnClickListener(new View.OnClickListener() {
