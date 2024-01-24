@@ -85,7 +85,7 @@
                         android:alpha="0.7"/>
 
                     <EditText
-                        android:id="@+id/txtName"
+                        android:id="@+id/customernametxt"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:ems="15" />
@@ -100,7 +100,7 @@
                         android:alpha="0.7"/>/>
 
                     <EditText
-                        android:id="@+id/txtEmail"
+                        android:id="@+id/Emailtxt"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:ems="15" />
@@ -193,7 +193,7 @@
                         android:alpha="0.7"/>/>
 
                     <EditText
-                        android:id="@+id/txt"
+                        android:id="@+id/txtcountry"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:ems="15"
@@ -219,7 +219,7 @@
                         android:layout_height="match_parent" />
 
                     <Button
-                        android:id="@+id/btnLogin"
+                        android:id="@+id/btnregister"
                         android:layout_width="150dp"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="15dp"
