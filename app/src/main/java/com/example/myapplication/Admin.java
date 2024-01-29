@@ -3,6 +3,7 @@ package com.example.myapplication;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
@@ -14,6 +15,7 @@ import com.google.android.material.card.MaterialCardView;
 public class Admin extends AppCompatActivity {
 
 
+    public static final String SHARED_PREFS = "sharedPrefs";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -34,6 +36,12 @@ public class Admin extends AppCompatActivity {
         leftIcon.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
+                SharedPreferences sharedPreferences = getSharedPreferences(SHARED_PREFS,MODE_PRIVATE);
+                SharedPreferences.Editor editor = sharedPreferences.edit();
+                editor.putString("name","");
+                editor.apply();
+
                 Toast.makeText(Admin.this, "Back",Toast.LENGTH_SHORT).show();
                 Intent intent = new Intent(Admin.this, MainActivity.class);
                 startActivity(intent);

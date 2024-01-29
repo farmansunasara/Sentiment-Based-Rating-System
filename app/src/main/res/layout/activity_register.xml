@@ -109,19 +109,6 @@
                         android:layout_marginTop="16dp">
 
                         <com.google.android.material.textfield.TextInputEditText
-                            android:id="@+id/txtPwd"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:hint="Passsword" />
-                    </com.google.android.material.textfield.TextInputLayout>
-
-                    <com.google.android.material.textfield.TextInputLayout
-                        style="@style/Widget.Material3.TextInputLayout.OutlinedBox"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:layout_marginTop="16dp">
-
-                        <com.google.android.material.textfield.TextInputEditText
                             android:id="@+id/txtmobile"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
@@ -138,7 +125,7 @@
                             android:id="@+id/txtAddress"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:hint="Address" />
+                            android:hint="Street Address" />
                     </com.google.android.material.textfield.TextInputLayout>
 
                     <com.google.android.material.textfield.TextInputLayout
@@ -167,6 +154,21 @@
                             android:hint="State" />
                     </com.google.android.material.textfield.TextInputLayout>
 
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        style="@style/Widget.Material3.TextInputLayout.OutlinedBox"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginTop="16dp">
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/txtpincode"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:hint="Pincode" />
+                    </com.google.android.material.textfield.TextInputLayout>
+
+
                     <com.google.android.material.textfield.TextInputLayout
                         style="@style/Widget.Material3.TextInputLayout.OutlinedBox"
                         android:layout_width="match_parent"
@@ -188,17 +190,32 @@
                         android:layout_marginTop="16dp">
 
                         <com.google.android.material.textfield.TextInputEditText
-                            android:id="@+id/txtpincode"
+                            android:id="@+id/txtPwd"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:hint="Pincode" />
+                            android:hint="Passsword" />
                     </com.google.android.material.textfield.TextInputLayout>
+                    <com.google.android.material.textfield.TextInputLayout
+                        style="@style/Widget.Material3.TextInputLayout.OutlinedBox"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginTop="16dp">
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/txtrePwd"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:hint="Confirm Passsword" />
+                    </com.google.android.material.textfield.TextInputLayout>
+
 
 
 
                     <ScrollView
                         android:layout_width="match_parent"
                         android:layout_height="match_parent" />
+
+
 
                     <com.google.android.material.button.MaterialButton
                         android:id="@+id/btnregister"
