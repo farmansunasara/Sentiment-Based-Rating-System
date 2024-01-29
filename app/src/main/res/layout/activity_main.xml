@@ -65,38 +65,36 @@
                 android:layout_width="wrap_content"
                 android:layout_height="29dp" />
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:alpha="0.7"
-                android:text="@string/email"
-                android:textSize="16sp"
-                android:textStyle="bold" />
-            <EditText
-                android:id="@+id/emaillogin"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:inputType="textEmailAddress"
-                android:drawableEnd="@drawable/baseline_arrow_forward_ios_24"/>
-            <View
-                android:layout_width="wrap_content"
-                android:layout_height="20dp"/>
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:alpha="0.7"
-                android:text="@string/pwd"
-                android:textSize="16sp"
-                android:textStyle="bold" />
-
-            <EditText
-                android:id="@+id/passwordlogin"
+            <com.google.android.material.textfield.TextInputLayout
+                style="@style/Widget.Material3.TextInputLayout.OutlinedBox"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:drawableEnd="@drawable/baseline_account_balance_wallet_24"
-                android:inputType="textPassword"
-                android:textSize="20sp" />
+                android:layout_height="match_parent"
+                android:layout_marginTop="16dp">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/emaillogin"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="E-mail"
+                    android:drawableEnd="@drawable/baseline_arrow_forward_ios_24"/>
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                style="@style/Widget.Material3.TextInputLayout.OutlinedBox"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="16dp">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/passwordlogin"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Password"
+                    android:drawableEnd="@drawable/baseline_account_balance_wallet_24"/>
+            </com.google.android.material.textfield.TextInputLayout>
+
+
 
             <RelativeLayout
                 android:layout_width="match_parent"
@@ -123,9 +121,9 @@
                 android:layout_height="10dp"/>
 
 
-                <ScrollView
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"/>
+            <ScrollView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"/>
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/loginbtn"
                 android:layout_width="match_parent"
@@ -149,4 +147,3 @@
     </androidx.cardview.widget.CardView>
 
 </RelativeLayout>
-
