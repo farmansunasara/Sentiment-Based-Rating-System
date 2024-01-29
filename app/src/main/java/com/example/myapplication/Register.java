@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.method.LinkMovementMethod;
+import android.util.Patterns;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -16,6 +17,7 @@ import com.google.android.material.button.MaterialButton;
         EditText customernametxt;
         EditText Emailtxt;
         EditText txtPwd;
+        EditText txtrePwd;
         EditText txtmobile;
 
         EditText txtAddress;
@@ -36,6 +38,7 @@ import com.google.android.material.button.MaterialButton;
         customernametxt=findViewById(R.id.customernametxt);
         Emailtxt=findViewById(R.id.Emailtxt);
         txtPwd=findViewById(R.id.txtPwd);
+        txtrePwd=findViewById(R.id.txtrePwd);
         txtmobile=findViewById(R.id.txtmobile);
         txtAddress=findViewById(R.id.txtAddress);
         txtcity=findViewById(R.id.txtcity);
@@ -80,18 +83,56 @@ import com.google.android.material.button.MaterialButton;
             if (Emailtxt.length() == 0) {
                 Emailtxt.setError("This field is required");
                 return false;
+            } else if (!Patterns.EMAIL_ADDRESS.matcher(Emailtxt.getText().toString().trim()).matches()) {
+                Emailtxt.setError("Invalid Email!");
             }
+
 
             if (txtPwd.length() == 0) {
-                txtPwd.setError("Email is required");
+                txtPwd.setError("Mobile no is required");
+                return false;
+            } else if (txtPwd.length() < 8) {
+                txtmobile.setError("Password must be minimum 8 characters");
                 return false;
             }
 
-            if (txtmobile.length() == 0) {
-                txtmobile.setError("Password is required");
+            if (txtrePwd.length() == 0) {
+                txtrePwd.setError("Mobile no is required");
                 return false;
-            } else if (txtmobile.length() < 11) {
+            } else if (txtrePwd.length() < 8) {
                 txtmobile.setError("Password must be minimum 8 characters");
+                return false;
+            } else if (!txtrePwd.equals(txtPwd)) {
+                txtrePwd.setError("Password should be same");
+                return false;
+            }
+
+
+            if (txtmobile.length() == 0) {
+                txtmobile.setError("Mobile no is required");
+                return false;
+            } else if (!Patterns.EMAIL_ADDRESS.matcher(Emailtxt.getText().toString().trim()).matches()) {
+                txtmobile.setError("Mobile no must be number and should be 10 digit");
+                return false;
+            }
+            if (txtAddress.length() == 0) {
+                txtAddress.setError("This field is required");
+                return false;
+            }
+            if (txtcity.length() == 0) {
+                txtcity.setError("This field is required");
+                return false;
+            }
+            if (txtstate.length() == 0) {
+                txtstate.setError("This field is required");
+                return false;
+            }
+            if (txtcountry.length() == 0) {
+                txtcountry.setError("This field is required");
+                return false;
+            }
+            if (txtpincode.length() == 0) {
+                txtpincode.setError("This field is required");
                 return false;
             }
 
