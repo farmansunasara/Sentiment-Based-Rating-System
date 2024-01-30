@@ -91,7 +91,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="Password"
-                    android:drawableEnd="@drawable/baseline_account_balance_wallet_24"/>
+                    android:drawableEnd="@drawable/show_password"
+                    android:inputType="textPassword" />
             </com.google.android.material.textfield.TextInputLayout>
 
 
