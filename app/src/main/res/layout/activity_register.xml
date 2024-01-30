@@ -193,7 +193,9 @@
                             android:id="@+id/txtPwd"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:hint="Passsword" />
+                            android:hint="Passsword"
+                            android:inputType="textPassword"
+                            />
                     </com.google.android.material.textfield.TextInputLayout>
                     <com.google.android.material.textfield.TextInputLayout
                         style="@style/Widget.Material3.TextInputLayout.OutlinedBox"
@@ -205,7 +207,9 @@
                             android:id="@+id/txtrePwd"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:hint="Confirm Passsword" />
+                            android:hint="Confirm Passsword"
+                            android:inputType="textPassword"
+                            />
                     </com.google.android.material.textfield.TextInputLayout>
 
 
