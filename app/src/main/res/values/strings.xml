@@ -17,6 +17,8 @@
     <string name="country">Country</string>
     <string name="pincode">Pincode</string>
     <string name="adminpanel">Admin</string>
+    <string name="customerpanel">Customers</string>
+    <string name="Remove">Remove</string>
 
 
 </resources>
