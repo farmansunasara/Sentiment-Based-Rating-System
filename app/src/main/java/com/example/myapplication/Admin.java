@@ -44,6 +44,8 @@ public class Admin extends AppCompatActivity {
 
                 Toast.makeText(Admin.this, "Back",Toast.LENGTH_SHORT).show();
                 Intent intent = new Intent(Admin.this, MainActivity.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
+
                 startActivity(intent);
             }
         });
@@ -58,7 +60,7 @@ public class Admin extends AppCompatActivity {
         product.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(Admin.this, com.example.myapplication.Add_product_form.class);
+                Intent intent = new Intent(Admin.this, com.example.myapplication.view_product.class);
                 startActivity(intent);
             }
         });

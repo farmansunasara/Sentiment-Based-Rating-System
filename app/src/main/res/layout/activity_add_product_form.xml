@@ -64,18 +64,6 @@
                     android:hint="Product MRP" />
             </com.google.android.material.textfield.TextInputLayout>
 
-            <com.google.android.material.textfield.TextInputLayout
-                style="@style/Widget.Material3.TextInputLayout.OutlinedBox"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginTop="16dp">
-
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/categoryname"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:hint="Category" />
-            </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
                 style="@style/Widget.Material3.TextInputLayout.OutlinedBox"
@@ -104,35 +92,41 @@
                     android:inputType="none" />
             </com.google.android.material.textfield.TextInputLayout>
 
-            <com.google.android.material.textfield.TextInputLayout
-                style="@style/Widget.Material3.TextInputLayout.OutlinedBox"
+
+           <com.google.android.material.button.MaterialButton
+               android:layout_width="match_parent"
+               android:layout_height="wrap_content"
+               android:id="@+id/select_cover_img"
+               app:backgroundTint="@color/my_primary"
+               android:text="Select Cover Image"
+               android:textAllCaps="false"
+               android:layout_margin="10dp"/>
+            <ImageView
+                android:layout_width="200dp"
+                android:layout_height="100dp"
+                android:visibility="gone"
+                android:layout_gravity="center"
+                android:scaleType="centerCrop"
+                android:id="@+id/product_coverimage"/>
+
+
+            <com.google.android.material.button.MaterialButton
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-
-                android:layout_marginTop="16dp">
-
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/covimage"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-
-                    android:hint="Cover Image"
-                    android:inputType="none" />
-            </com.google.android.material.textfield.TextInputLayout>
-
-
-            <com.google.android.material.textfield.TextInputLayout
-                style="@style/Widget.Material3.TextInputLayout.OutlinedBox"
+                android:layout_height="wrap_content"
+                android:id="@+id/product_img_btn"
+                android:backgroundTint="@color/my_primary"
+                android:text="Select Image"
+                android:textAllCaps="false"
+                android:layout_margin="10dp"/>
+            <androidx.recyclerview.widget.RecyclerView
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginTop="16dp">
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                tools:listitem="@layout/image_item"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                android:orientation="horizontal"
+                android:id="@+id/prod_img_recyclerview"/>
 
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/addprodimg"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:hint="Add product Image" />
-            </com.google.android.material.textfield.TextInputLayout>
 
 
             <ScrollView
@@ -140,13 +134,13 @@
                 android:layout_height="match_parent" />
 
             <Button
-                android:id="@+id/saveproduct"
-                android:layout_width="150dp"
+                android:id="@+id/submit_product_btn"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_marginTop="15dp"
                 android:backgroundTint="@color/my_primary"
-                android:text="Save" />
+                android:text="Add product" />
 
 
         </LinearLayout>

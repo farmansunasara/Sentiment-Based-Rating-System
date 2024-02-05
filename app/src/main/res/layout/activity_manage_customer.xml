@@ -6,14 +6,13 @@
     android:layout_height="match_parent"
     tools:context=".Manage_customer">
 
-    <include
-        android:id="@+id/include"
-        layout="@layout/toolbarcustomer" />
+    <include android:id="@+id/toolbar_customer"
+        layout="@layout/toolbarcustomer"/>
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerview"
-        android:layout_width="415dp"
-        android:layout_height="845dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
         android:layout_marginBottom="7dp"
         android:outlineAmbientShadowColor="@color/black"
         android:paddingTop="?actionBarSize"
@@ -21,7 +20,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/include"
+        app:layout_constraintTop_toBottomOf="@+id/toolbar_customer"
         app:layout_constraintVertical_bias="1.0"
         tools:ignore="MissingConstraints" />
 </androidx.constraintlayout.widget.ConstraintLayout>

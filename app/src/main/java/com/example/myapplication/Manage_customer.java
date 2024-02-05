@@ -4,8 +4,12 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
+import android.util.Log;
+import android.view.View;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
@@ -14,6 +18,8 @@ public class Manage_customer extends AppCompatActivity {
     MyDatabaseHelper myDB;
     RecyclerView recyclerView;
     CustomAdapter customAdapter;
+
+    ImageView left_icon_customer;
     ArrayList<String> cust_id,cust_name,cust_Email,cust_pwd,cust_mobile,cust_address,cust_city,cust_state,cust_country,cust_pincode;
 
 
@@ -21,6 +27,18 @@ public class Manage_customer extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_manage_customer);
+        Log.d("Manage_customer", "onCreate");
+
+        left_icon_customer = findViewById(R.id.left_icon_customer);
+        left_icon_customer.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(Manage_customer.this, "Back", Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(Manage_customer.this, Admin.class);
+                startActivity(intent);
+                finish(); // Optional: finish the current activity to remove it from the stack
+            }
+        });
         recyclerView =findViewById(R.id.recyclerview);
         myDB = new MyDatabaseHelper(Manage_customer.this);
         cust_id=new ArrayList<>();
@@ -33,12 +51,20 @@ public class Manage_customer extends AppCompatActivity {
         cust_state=new ArrayList<>();
         cust_country=new ArrayList<>();
         cust_pincode=new ArrayList<>();
+
+        Log.d("Manage_customer", "left_icon_customer: " + left_icon_customer);
+
+
         storeDataInArrays();
 
         customAdapter = new CustomAdapter(Manage_customer.this,cust_id,cust_name,cust_Email,cust_pwd,cust_mobile,cust_address,cust_city
                 ,cust_state,cust_country,cust_pincode);
         recyclerView.setAdapter(customAdapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(Manage_customer.this));
+
+
+
+
     }
 
     void storeDataInArrays(){

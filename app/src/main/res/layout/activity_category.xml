@@ -25,8 +25,10 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:orientation="vertical"
+
                 android:gravity="center">
                 <ImageView
+                    android:id="@+id/categimg"
                     android:layout_width="64dp"
                     android:layout_height="64dp"
                     android:background="@drawable/circle_purple"
@@ -63,11 +65,17 @@
         <com.google.android.material.button.MaterialButton
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="ADD CATEGORY"
+            android:text="Upload Category"
             android:layout_marginTop="16dp"
             android:textAllCaps="false"
             android:id="@+id/add_category_btn"
             />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/categoryRecyclerview"
+            android:paddingTop="20dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
     </LinearLayout>
 
 </ScrollView>

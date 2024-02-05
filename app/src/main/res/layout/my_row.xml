@@ -310,11 +310,11 @@
 
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/btnremove"
-                android:layout_width="96dp"
-                android:layout_height="39dp"
+                android:layout_width="110dp"
+                android:layout_height="48dp"
                 android:layout_gravity="center"
                 android:backgroundTint="@color/my_primary"
-                android:text="@string/Remove"
+                android:text="@string/remove"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
