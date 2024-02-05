@@ -18,6 +18,7 @@ import android.provider.MediaStore;
 import android.provider.Settings;
 import android.util.Log;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -38,6 +39,7 @@ public class view_product extends AppCompatActivity {
     ArrayList<String> productIds, productNames, productDescriptions, productMRPs, productSPs, productcategory;
 
     ArrayList<byte[]> productcov_img, productselected_img;
+    ImageView left_icon_product;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -77,6 +79,7 @@ public class view_product extends AppCompatActivity {
     // Initialize views and database helper
     private void initViewsAndDBHelper() {
         add_button_product = findViewById(R.id.add_button_product);
+        left_icon_product=findViewById(R.id.left_icon_product);
         view_product_recyclerview = findViewById(R.id.view_product_recyclerview);
         myDB = new MyDatabaseHelper(this);
 
@@ -156,6 +159,16 @@ public class view_product extends AppCompatActivity {
     }
 
     private void setClickListeners() {
+
+        left_icon_product.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(view_product.this, "Back", Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(view_product.this, Admin.class);
+                startActivity(intent);
+                finish(); // Optional: finish the current activity to remove it from the stack
+            }
+        });
         add_button_product.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

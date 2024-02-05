@@ -6,8 +6,7 @@
     android:layout_height="match_parent"
     tools:context=".Manage_customer">
 
-    <include android:id="@+id/toolbar_customer"
-        layout="@layout/toolbarcustomer"/>
+    <include layout="@layout/toolbarcustomer"/>
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerview"
