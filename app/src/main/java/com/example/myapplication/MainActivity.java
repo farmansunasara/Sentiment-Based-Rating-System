@@ -2,8 +2,10 @@ package com.example.myapplication;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.CheckBox;
 
 import android.widget.TextView;
@@ -23,6 +25,14 @@ public class MainActivity extends AppCompatActivity {
     private SharedPreferences sharedPreferences;
     private static final String PREF_NAME = "login_pref";
     private static final String PREF_KEY_REMEMBER_ME = "remember_me";
+    String username,password;
+    SharedPreferences loginPreference;
+    SharedPreferences.Editor loginPrefsEditor;
+    Boolean savelogin;
+    TextView  emailEditText;
+    TextView passwordEditText;
+    MaterialButton loginbtn;
+    CheckBox rememberMeCheckbox;
 
 
 
@@ -33,30 +43,22 @@ public class MainActivity extends AppCompatActivity {
 
         TextView register = (TextView) findViewById(R.id.lnkregister);
         register.setMovementMethod(LinkMovementMethod.getInstance());
-        TextView  emailEditText =(TextView) findViewById(R.id.emaillogin) ;
-        TextView passwordEditText =(TextView) findViewById(R.id.passwordlogin);
-        MaterialButton loginbtn =(MaterialButton) findViewById(R.id.loginbtn);
-        CheckBox rememberMeCheckbox = findViewById(R.id.remember_me_checkbox);
+        emailEditText =(TextView) findViewById(R.id.emaillogin) ;
+        passwordEditText =(TextView) findViewById(R.id.passwordlogin);
+         loginbtn=(MaterialButton) findViewById(R.id.loginbtn);
+         rememberMeCheckbox = findViewById(R.id.remember_me_checkbox);
         TextView forgotPassword=findViewById(R.id.forgotPassword);
+        loginPreference =getSharedPreferences("loginPrefs",MODE_PRIVATE);
+        loginPrefsEditor = loginPreference.edit();
 
         myDB = new MyDatabaseHelper(MainActivity.this);
-        sharedPreferences = getSharedPreferences(PREF_NAME, MODE_PRIVATE);
 
-
-
-
-        // Load the state of remember me checkbox from SharedPreferences
-        boolean rememberMeChecked = sharedPreferences.getBoolean(PREF_KEY_REMEMBER_ME, false);
-        rememberMeCheckbox.setChecked(rememberMeChecked);
-
-        // Set up OnCheckedChangeListener for remember me checkbox
-        rememberMeCheckbox.setOnCheckedChangeListener((buttonView, isChecked) -> {
-            // Save the state of remember me checkbox to SharedPreferences
-            SharedPreferences.Editor editor = sharedPreferences.edit();
-            editor.putBoolean(PREF_KEY_REMEMBER_ME, isChecked);
-            editor.apply();
-        });
-
+        savelogin= loginPreference.getBoolean("saveLogin",false);
+        if (savelogin == true){
+            emailEditText.setText(loginPreference.getString("username",""));
+            passwordEditText.setText(loginPreference.getString("password",""));
+            rememberMeCheckbox.setChecked(true);
+        }
 
         loginbtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -110,6 +112,33 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+    }
+
+    public void onClick(View view) {
+        if (view == loginbtn) {
+            InputMethodManager imm = (InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE);
+            imm.hideSoftInputFromWindow(emailEditText.getWindowToken(), 0);
+
+            username =emailEditText.getText().toString();
+            password = passwordEditText.getText().toString();
+
+            if (rememberMeCheckbox.isChecked()) {
+                loginPrefsEditor.putBoolean("saveLogin", true);
+                loginPrefsEditor.putString("username", username);
+                loginPrefsEditor.putString("password", password);
+                loginPrefsEditor.commit();
+            } else {
+                loginPrefsEditor.clear();
+                loginPrefsEditor.commit();
+            }
+
+            doSomethingElse();
+        }
+    }
+
+    public void doSomethingElse() {
+        startActivity(new Intent(MainActivity.this, UserMain.class));
+        MainActivity.this.finish();
     }
 
 
