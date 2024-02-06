@@ -200,6 +200,25 @@
             return db.rawQuery(query, null);
         }
 
+        public boolean checkEmailExists(String email) {
+            SQLiteDatabase db = this.getReadableDatabase();
+            String query = "SELECT * FROM " + TABLE_NAME + " WHERE " + MyDatabaseHelper.COULMN_EMAIL + " = ?";
+            Cursor cursor = db.rawQuery(query, new String[]{email});
+            boolean exists = cursor.getCount() > 0;
+            cursor.close();
+            return exists;
+        }
+
+        public boolean checkEmailPassword(String email, String password) {
+            SQLiteDatabase db = this.getWritableDatabase();
+            String[] selectionArgs = {email, password};
+            Cursor cursor = db.query(TABLE_NAME, null, COULMN_EMAIL + "=? AND " + COULMN_PASSWORD + "=?", selectionArgs, null, null, null);
+            int count = cursor.getCount();
+            cursor.close();
+            db.close();
+            return count > 0;
+        }
+
 
         public boolean addProduct(String productName, String productDesc, String productMrp, String productSp, String selectedCategory, byte[] coverImageData, List<byte[]> imageListData) {
             SQLiteDatabase db = this.getWritableDatabase();
@@ -299,6 +318,8 @@
                 return null;
             }
         }
+
+
 
 
 

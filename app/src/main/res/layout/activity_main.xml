@@ -83,6 +83,7 @@
             <com.google.android.material.textfield.TextInputLayout
                 style="@style/Widget.Material3.TextInputLayout.OutlinedBox"
                 android:layout_width="match_parent"
+                app:passwordToggleEnabled="true"
                 android:layout_height="match_parent"
                 android:layout_marginTop="16dp">
 
@@ -91,10 +92,9 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="Password"
-                    android:drawableEnd="@drawable/show_password"
                     android:inputType="textPassword"
-
-                    />
+                    android:drawableTint="@color/my_primary"
+                />
 
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -114,6 +114,7 @@
                     android:textSize="16sp" />
 
                 <TextView
+                    android:id="@+id/forgotPassword"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentEnd="true"
