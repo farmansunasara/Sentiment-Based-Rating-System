@@ -146,9 +146,6 @@
                 android:alpha="0.7"
                 android:padding="30dp"
                 android:text="Don't have any account ? Register here " />
-
-
-
         </LinearLayout>
     </androidx.cardview.widget.CardView>
 
