@@ -22,9 +22,6 @@ public class MainActivity extends AppCompatActivity {
 
 //    CheckBox remember_me_checkbox = findViewById(R.id.remember_me_checkbox);
     MyDatabaseHelper myDB;
-    private SharedPreferences sharedPreferences;
-    private static final String PREF_NAME = "login_pref";
-    private static final String PREF_KEY_REMEMBER_ME = "remember_me";
     String username,password;
     SharedPreferences loginPreference;
     SharedPreferences.Editor loginPrefsEditor;
@@ -43,9 +40,9 @@ public class MainActivity extends AppCompatActivity {
 
         TextView register = (TextView) findViewById(R.id.lnkregister);
         register.setMovementMethod(LinkMovementMethod.getInstance());
-        emailEditText =(TextView) findViewById(R.id.emaillogin) ;
-        passwordEditText =(TextView) findViewById(R.id.passwordlogin);
-         loginbtn=(MaterialButton) findViewById(R.id.loginbtn);
+        emailEditText = findViewById(R.id.emaillogin) ;
+        passwordEditText = findViewById(R.id.passwordlogin);
+         loginbtn= findViewById(R.id.loginbtn);
          rememberMeCheckbox = findViewById(R.id.remember_me_checkbox);
         TextView forgotPassword=findViewById(R.id.forgotPassword);
         loginPreference =getSharedPreferences("loginPrefs",MODE_PRIVATE);
