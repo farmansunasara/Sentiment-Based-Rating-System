@@ -191,6 +191,24 @@
             return db.rawQuery(query, null);
         }
 
+        public Cursor viewProductDetailsbycategory(String category) {
+            String query = "SELECT * FROM " + TABLE_NAME_Product + " WHERE " + MyDatabaseHelper.PRODUCT_CATEGORY + " = ?";
+            Log.d("SQLQuery", "Executing query: " + query);
+
+            SQLiteDatabase db = this.getReadableDatabase();
+            // Pass the category value as the second argument
+            return db.rawQuery(query, new String[]{category});
+        }
+
+
+        public Cursor  viewProductDetailswithdescription(String Id) {
+            String query = "SELECT * FROM " + TABLE_NAME_Product + " WHERE " + MyDatabaseHelper.PRODUCT_ID + " = ?";
+            Log.d("SQLQuery", "Executing query: " + query);
+
+            SQLiteDatabase db = this.getReadableDatabase();
+            // Pass the category value as the second argument
+            return db.rawQuery(query, new String[]{Id});
+        }
         Cursor viewCategoryDetails() {
             String query = "SELECT * FROM " + TABLE_NAME_CATEGORY;
 

@@ -1,6 +1,7 @@
 package com.example.myapplication;
 
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.util.Log;
@@ -12,6 +13,8 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.example.myapplication.activityUser.ProductDetailsActivity;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -82,6 +85,16 @@ public class ProductAdaptor extends RecyclerView.Adapter<ProductAdaptor.MyViewHo
             holder.product_desc_txt.setText(currentprod_desc);
             holder.prod_sp_txt.setText(currentprod_sp);
             holder.prod_MRP_txt.setText(currentprod_mrp);
+            holder.itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Log.d("ProductId", "Clicked category name: " + currentprodId);
+
+                    Intent intent = new Intent(context, ProductDetailsActivity.class);
+                    intent.putExtra("currentProductId", currentprodId);
+                    context.startActivity(intent);
+                }
+            });
 
             if (currentcov_img != null) {
                 try {
