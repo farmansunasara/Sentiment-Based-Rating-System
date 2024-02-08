@@ -1,6 +1,7 @@
 package com.example.myapplication;
 
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.util.Log;
@@ -12,6 +13,8 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.example.myapplication.activityUser.CategoryActivityUser;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -56,6 +59,16 @@ public class UserCategoryAdaptor extends RecyclerView.Adapter<UserCategoryAdapto
             Log.d("AdapterDebug", "Category Image: " + Arrays.toString(currentCategoryImage));
             // Assuming category_img is a list of byte arrays representing images
             holder.category_name_txt.setText(currentCategoryName);
+            holder.itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Log.d("CategoryName", "Clicked category name: " + currentCategoryName);
+
+                    Intent intent = new Intent(context, CategoryActivityUser.class);
+                    intent.putExtra("currentCategoryName", currentCategoryName);
+                    context.startActivity(intent);
+                }
+            });
 
             // Update your ViewHolder with the data
             if (currentCategoryImage != null) {

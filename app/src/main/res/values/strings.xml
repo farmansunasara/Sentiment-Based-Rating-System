@@ -18,7 +18,7 @@
     <string name="pincode">Pincode</string>
     <string name="adminpanel">Admin</string>
     <string name="remove">Remove</string>
-    <string name="customerpanel">Customer Panel</string>
+    <string name="customerpanel">Customer</string>
     <string name="title_activity_view_product">View_product</string>
     <!-- Strings used for fragments for navigation -->
     <string name="first_fragment_label">First Fragment</string>
