@@ -20,51 +20,76 @@
     <com.denzcoskun.imageslider.ImageSlider
         android:id="@+id/image_slider"
         android:layout_width="wrap_content"
-        android:layout_height="300dp"
+        android:layout_height="match_parent"
         app:iss_auto_cycle="true"
-        app:iss_period="1000"
         app:iss_delay="1000"
-        app:iss_text_align="CENTER"/>
+        app:iss_period="1000"
+        app:iss_text_align="CENTER">
+
+    </com.denzcoskun.imageslider.ImageSlider>
   </com.google.android.material.card.MaterialCardView>
 
+<!--  <TextView-->
+<!--      android:id="@+id/productNameTextView"-->
+<!--      android:layout_width="wrap_content"-->
+<!--      android:layout_height="wrap_content"-->
+<!--      android:text="TextView"-->
+<!--      android:textColor="@color/black"-->
+<!--      android:textSize="18sp"-->
+<!--      android:textStyle="bold"-->
+<!--      app:layout_constraintBottom_toTopOf="@+id/productDescriptionTextView"-->
+<!--      app:layout_constraintEnd_toEndOf="parent"-->
+<!--      app:layout_constraintHorizontal_bias="0.07"-->
+<!--      app:layout_constraintStart_toStartOf="parent"-->
+<!--      app:layout_constraintTop_toBottomOf="@+id/materialCardView"-->
+<!--      app:layout_constraintVertical_bias="0.07999998" />-->
   <TextView
       android:id="@+id/productNameTextView"
-      android:layout_width="0dp"
-      android:layout_marginStart="12dp"
-      android:layout_marginEnd="12dp"
-      android:layout_marginTop="12dp"
-      android:textColor="@color/black"
-      android:textSize="14sp"
-      android:layout_height="wrap_content"
-      android:text="TextView"
-      app:layout_constraintEnd_toStartOf="@+id/productPriceTextView"
-      app:layout_constraintStart_toStartOf="parent"
-      app:layout_constraintTop_toBottomOf="@+id/materialCardView" />
-
-  <TextView
-      android:id="@+id/productPriceTextView"
       android:layout_width="wrap_content"
       android:layout_height="wrap_content"
-      android:layout_marginTop="12dp"
       android:text="TextView"
-      android:textColor="@color/black"
-      android:textSize="14sp"
+      android:textColor="#000"
+      android:textSize="18sp"
+      android:textStyle="bold"
+      app:layout_constraintBottom_toBottomOf="parent"
       app:layout_constraintEnd_toEndOf="parent"
-      app:layout_constraintTop_toBottomOf="@+id/materialCardView" />
+      app:layout_constraintHorizontal_bias="0.079"
+      app:layout_constraintStart_toStartOf="parent"
+      app:layout_constraintTop_toBottomOf="@+id/materialCardView"
+      app:layout_constraintVertical_bias="0.06999999"
+      tools:ignore="MissingConstraints" />
+
+<!--  <TextView-->
+  <!--      android:id="@+id/productDescriptionTextView"-->
+  <!--      android:layout_width="wrap_content"-->
+  <!--      android:layout_height="wrap_content"-->
+  <!--      android:layout_marginHorizontal="12dp"-->
+  <!--      android:text="TextView"-->
+  <!--      android:textColor="@color/black"-->
+  <!--      android:textSize="16sp"-->
+  <!--      app:layout_constraintBottom_toBottomOf="parent"-->
+  <!--      app:layout_constraintEnd_toEndOf="parent"-->
+  <!--      app:layout_constraintHorizontal_bias="0.095"-->
+  <!--      app:layout_constraintStart_toStartOf="parent"-->
+  <!--      app:layout_constraintTop_toTopOf="parent"-->
+  <!--      app:layout_constraintVertical_bias="0.617" />-->
+
 
   <TextView
       android:id="@+id/productDescriptionTextView"
-      android:layout_width="0dp"
-      android:layout_height="0dp"
-      android:layout_marginHorizontal="12dp"
-      android:layout_marginTop="18dp"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_marginHorizontal="35dp"
       android:text="TextView"
-      android:textColor="@color/black"
-      android:textSize="16sp"
-      app:layout_constraintBottom_toTopOf="@+id/textView13"
+      android:textColor="#000"
+      android:textSize="17sp"
+      app:layout_constraintBottom_toBottomOf="parent"
       app:layout_constraintEnd_toEndOf="parent"
+      app:layout_constraintHorizontal_bias="0.12"
       app:layout_constraintStart_toStartOf="parent"
-      app:layout_constraintTop_toBottomOf="@+id/productNameTextView" />
+      app:layout_constraintTop_toBottomOf="@+id/productPriceTextView"
+      app:layout_constraintVertical_bias="0.04000002"
+      tools:ignore="MissingConstraints" />
 
   <TextView
       android:id="@+id/textView13"
@@ -80,5 +105,51 @@
       app:layout_constraintBottom_toBottomOf="parent"
       app:layout_constraintEnd_toEndOf="parent"
       app:layout_constraintStart_toStartOf="parent" />
+
+<!--  <TextView-->
+<!--      android:id="@+id/productPriceTextView"-->
+<!--      android:layout_width="wrap_content"-->
+<!--      android:layout_height="wrap_content"-->
+<!--      android:text="TextView"-->
+<!--      android:textColor="@color/black"-->
+<!--      android:textSize="18sp"-->
+<!--      android:textStyle="bold"-->
+<!--      app:layout_constraintBottom_toTopOf="@+id/productDescriptionTextView"-->
+<!--      app:layout_constraintEnd_toEndOf="parent"-->
+<!--      app:layout_constraintHorizontal_bias="0.071"-->
+<!--      app:layout_constraintStart_toStartOf="parent"-->
+<!--      app:layout_constraintTop_toBottomOf="@+id/materialCardView"-->
+<!--      app:layout_constraintVertical_bias="0.355" />-->
+  <TextView
+      android:id="@+id/currency"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:text="₹"
+      android:textColor="#000"
+      android:textSize="18sp"
+      android:textStyle="bold"
+      app:layout_constraintBottom_toBottomOf="parent"
+      app:layout_constraintEnd_toEndOf="parent"
+      app:layout_constraintHorizontal_bias="0.067"
+      app:layout_constraintStart_toStartOf="parent"
+      app:layout_constraintTop_toBottomOf="@+id/materialCardView"
+      app:layout_constraintVertical_bias="0.119"
+      tools:ignore="MissingConstraints" />
+
+  <TextView
+      android:id="@+id/productPriceTextView"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:text="TextView"
+      android:textColor="#000"
+      android:textSize="18sp"
+      android:textStyle="bold"
+      app:layout_constraintBottom_toBottomOf="parent"
+      app:layout_constraintEnd_toEndOf="parent"
+      app:layout_constraintHorizontal_bias="0.11"
+      app:layout_constraintStart_toStartOf="parent"
+      app:layout_constraintTop_toBottomOf="@+id/materialCardView"
+      app:layout_constraintVertical_bias="0.120000005"
+      tools:ignore="MissingConstraints" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
