@@ -24,7 +24,7 @@ public class Admin extends AppCompatActivity {
 
 
         MaterialButton logout=findViewById(R.id.logout);
-        ImageView leftIcon = findViewById(R.id.left_icon);
+
         TextView title =(TextView) findViewById(R.id.toolbar_title);
         MaterialCardView category = findViewById(R.id.category);
         MaterialCardView product = findViewById(R.id.product);
@@ -34,43 +34,11 @@ public class Admin extends AppCompatActivity {
 
 
 
-        leftIcon.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-                SharedPreferences sharedPreferences = getSharedPreferences(SHARED_PREFS,MODE_PRIVATE);
-                SharedPreferences.Editor editor = sharedPreferences.edit();
-                editor.putString("name","");
-                editor.apply();
-
-                Toast.makeText(Admin.this, "Back",Toast.LENGTH_SHORT).show();
-                Intent intent = new Intent(Admin.this, MainActivity.class);
-                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
-
-                startActivity(intent);
-            }
-        });
 
         category.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(Admin.this, com.example.myapplication.category.class);
-                startActivity(intent);
-            }
-        });
-        leftIcon.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-                SharedPreferences sharedPreferences = getSharedPreferences(SHARED_PREFS,MODE_PRIVATE);
-                SharedPreferences.Editor editor = sharedPreferences.edit();
-                editor.putString("name","");
-                editor.apply();
-
-                Toast.makeText(Admin.this, "Back",Toast.LENGTH_SHORT).show();
-                Intent intent = new Intent(Admin.this, MainActivity.class);
-                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
-
                 startActivity(intent);
             }
         });

@@ -21,11 +21,13 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="21dp"
             android:id="@+id/btngallery"
+            android:backgroundTint="@color/my_primary"
             android:text="Select Image"/>
         <com.google.android.material.button.MaterialButton
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/addimagetoslider"
+            android:backgroundTint="@color/my_primary"
             android:text="insert Image"/>
     </LinearLayout>
 
