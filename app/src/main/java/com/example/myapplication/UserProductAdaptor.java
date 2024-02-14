@@ -95,6 +95,7 @@ public class UserProductAdaptor extends RecyclerView.Adapter<UserProductAdaptor.
                     intent.putExtra("currentProductId", currentprodId);
                     context.startActivity(intent);
                 }
+
             });
 
             if (currentcov_img != null) {

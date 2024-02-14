@@ -1,20 +1,21 @@
 package com.example.myapplication.activityUser;
 
-import static com.example.myapplication.MyDatabaseHelper.MAX_PRODUCT_IMAGES;
-
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.denzcoskun.imageslider.ImageSlider;
 import com.denzcoskun.imageslider.constants.ScaleTypes;
 import com.denzcoskun.imageslider.models.SlideModel;
+import com.example.myapplication.CartFragment;
 import com.example.myapplication.MyDatabaseHelper;
 import com.example.myapplication.R;
 
@@ -25,9 +26,10 @@ import java.util.ArrayList;
 public class ProductDetailsActivity extends AppCompatActivity {
 
     MyDatabaseHelper myDB;
-    private TextView productNameTextView, productDescriptionTextView, productPriceTextView;
+    private TextView productNameTextView, productDescriptionTextView, productPriceTextView, addToCartTextView;
 
     private ImageSlider imageSlider;
+    private byte[] productCoverImage;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,6 +42,7 @@ public class ProductDetailsActivity extends AppCompatActivity {
         productNameTextView = findViewById(R.id.productNameTextView);
         productDescriptionTextView = findViewById(R.id.productDescriptionTextView);
         productPriceTextView = findViewById(R.id.productPriceTextView);
+        addToCartTextView = findViewById(R.id.addtocartproduct);
 
         // Creating image list
         ArrayList<SlideModel> imageList = new ArrayList<>();
@@ -48,8 +51,44 @@ public class ProductDetailsActivity extends AppCompatActivity {
         String currentProductId = getIntent().getStringExtra("currentProductId");
         Log.d("ProductId", "Received product ID: " + currentProductId);
         getProductDetails(currentProductId);
+
+        addToCartTextView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Call a method to add the product to the cart
+                addToCart(productCoverImage);
+            }
+        });
     }
 
+    private void addToCart(byte[] productCoverImage) {
+        // Retrieve product details
+        String productId = getIntent().getStringExtra("currentProductId");
+        String productName = productNameTextView.getText().toString();
+        String productPrice = productPriceTextView.getText().toString();
+
+        // Check if the product is already in the cart
+        boolean alreadyInCart = myDB.checkIfProductInCart(productId);
+
+        // If the product is already in the cart, show a message and return
+        if (alreadyInCart) {
+            Toast.makeText(ProductDetailsActivity.this, "Product is already in the cart", Toast.LENGTH_SHORT).show();
+            // Optionally, you can implement code to navigate to the cart fragment here
+            return;
+        }
+
+        // Use MyDatabaseHelper to add the product to the cart
+        boolean success = myDB.addToCart(Integer.parseInt(productId), productName, Double.parseDouble(productPrice), 1, productCoverImage);
+
+        // Display a toast message based on the result
+        if (success) {
+            Toast.makeText(ProductDetailsActivity.this, "Product added to cart", Toast.LENGTH_SHORT).show();
+        } else {
+            Toast.makeText(ProductDetailsActivity.this, "Failed to add product to cart", Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    // Method to retrieve product details from the database
     private void getProductDetails(String currentProductId) {
         Cursor cursor = myDB.viewProductDetailswithdescription(currentProductId);
 
@@ -57,19 +96,25 @@ public class ProductDetailsActivity extends AppCompatActivity {
             ArrayList<SlideModel> imageList = new ArrayList<>(); // Create a new image list
 
             while (cursor.moveToNext()) {
-                String productId = cursor.getString(0);
                 String productName = cursor.getString(1);
                 String productDescription = cursor.getString(2);
-                String productMRP = cursor.getString(3);
-                String productSP = cursor.getString(4);
-                String productCategory = cursor.getString(5);
+                String productPrice = cursor.getString(4);
 
                 productNameTextView.setText(productName);
                 productDescriptionTextView.setText(productDescription);
-                productPriceTextView.setText(productSP);
+                productPriceTextView.setText(productPrice);
+
+                // Get the cover image path from the cursor
+                int coverImagePathColumnIndex = cursor.getColumnIndex(MyDatabaseHelper.PRODUCT_COVER_IMAGE);
+                if (coverImagePathColumnIndex != -1) {
+                    String coverImagePath = cursor.getString(coverImagePathColumnIndex);
+                    if (coverImagePath != null) {
+                        handleCoverImage(coverImagePath);
+                    }
+                }
 
                 // For selected images
-                for (int i = 0; i < MAX_PRODUCT_IMAGES; i++) {
+                for (int i = 0; i < MyDatabaseHelper.MAX_PRODUCT_IMAGES; i++) {
                     String imagePathColumnName = MyDatabaseHelper.PRODUCT_IMAGE + "_" + i;
                     int imagePathColumnIndexForSelectedImages = cursor.getColumnIndex(imagePathColumnName);
 
@@ -89,17 +134,27 @@ public class ProductDetailsActivity extends AppCompatActivity {
         }
     }
 
+    // Method to handle cover image
+    private void handleCoverImage(String imagePath) {
+        File f = new File(imagePath);
+        if (f.exists()) {
+            Bitmap myBitmap = BitmapFactory.decodeFile(imagePath);
+            ByteArrayOutputStream stream = new ByteArrayOutputStream();
+            myBitmap.compress(Bitmap.CompressFormat.PNG, 100, stream);
+            productCoverImage = stream.toByteArray();
+            Log.d("Image File Size", String.valueOf(f.length()));
+        } else {
+            Log.e("Image File", "File does not exist: " + imagePath);
+        }
+    }
+
+    // Method to handle other images
     private void handleImage(String imagePath, ArrayList<SlideModel> imageList) {
         File f = new File(imagePath);
         if (f.exists()) {
             Bitmap myBitmap = BitmapFactory.decodeFile(imagePath);
             if (myBitmap != null) {
                 try {
-                    // Convert Bitmap to byte array
-                    ByteArrayOutputStream stream = new ByteArrayOutputStream();
-                    myBitmap.compress(Bitmap.CompressFormat.PNG, 100, stream);
-                    byte[] bytes = stream.toByteArray();
-
                     // Create a SlideModel with the image URL and title
                     SlideModel slideModel = new SlideModel("file://" + imagePath, null);
                     slideModel.setScaleType(ScaleTypes.CENTER_CROP);

@@ -13,7 +13,10 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 public class UserMain extends AppCompatActivity {
     BottomNavigationView bottomNavigationView;
     HomeFragment homeFragment = new HomeFragment();
+    CartFragment cartFragment = new CartFragment();
+
     ProfileFragment profileFragment = new ProfileFragment();
+
     SettingFragment settingFragment = new SettingFragment();
 
     @Override
@@ -25,6 +28,7 @@ public class UserMain extends AppCompatActivity {
         final int homeId = R.id.home;
         final int profileId = R.id.profile;
         final int settingsId = R.id.settings;
+        final int cartId=R.id.cart;
         getSupportFragmentManager().beginTransaction().replace(R.id.container,homeFragment).commit();
         bottomNavigationView.setOnItemSelectedListener(new BottomNavigationView.OnItemSelectedListener() {
             @Override
@@ -37,6 +41,9 @@ public class UserMain extends AppCompatActivity {
                     return true;
                 } else if (item.getItemId() == settingsId) {
                     getSupportFragmentManager().beginTransaction().replace(R.id.container, settingFragment).commit();
+                    return true;
+                }else if (item.getItemId() == cartId) {
+                    getSupportFragmentManager().beginTransaction().replace(R.id.container, cartFragment).commit();
                     return true;
                 }
                 return false;

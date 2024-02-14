@@ -1,0 +1,59 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <!-- Header -->
+    <TextView
+        android:id="@+id/textViewCartHeader"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Your Cart"
+        android:textSize="24sp"
+        android:gravity="center"
+        android:padding="16dp"/>
+
+    <!-- Cart Items -->
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerViewCartItems"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/textViewCartHeader"
+        android:padding="16dp"/>
+
+    <!-- Total Section -->
+    <LinearLayout
+        android:id="@+id/linearLayoutTotal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/recyclerViewCartItems"
+        android:orientation="horizontal"
+        android:gravity="end"
+        android:padding="16dp">
+
+        <TextView
+            android:id="@+id/textViewTotal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Total: $100.00"
+            android:textSize="18sp"/>
+
+        <Button
+            android:id="@+id/buttonCheckout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Checkout"/>
+    </LinearLayout>
+
+    <!-- Empty Cart Message -->
+    <TextView
+        android:id="@+id/textViewEmptyCartMessage"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/textViewCartHeader"
+        android:text="Your cart is empty."
+        android:textSize="18sp"
+        android:gravity="center"
+        android:visibility="gone"
+        android:padding="16dp"/>
+
+</RelativeLayout>
