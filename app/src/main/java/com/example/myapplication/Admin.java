@@ -43,7 +43,6 @@ public class Admin extends AppCompatActivity {
             }
         });
 
-
         logout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
