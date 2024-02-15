@@ -32,15 +32,16 @@
 
         <TextView
             android:id="@+id/textViewTotal"
-            android:layout_width="wrap_content"
+            android:layout_width="144dp"
             android:layout_height="wrap_content"
             android:text="Total: $100.00"
-            android:textSize="18sp"/>
+            android:textSize="18sp" />
 
         <Button
             android:id="@+id/buttonCheckout"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:backgroundTint="@color/my_primary"
             android:text="Checkout"/>
     </LinearLayout>
 

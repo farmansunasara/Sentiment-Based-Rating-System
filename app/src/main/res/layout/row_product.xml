@@ -59,50 +59,51 @@
                     app:layout_constraintTop_toTopOf="@+id/cover_img_txt"
                     app:layout_constraintVertical_bias="0.0" />
 
-                <TextView
-                    android:id="@+id/product_desc_txt"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Description of product"
-                    android:textColor="#000"
-                    android:textSize="15sp"
-                    android:textStyle="bold"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.217"
-                    app:layout_constraintStart_toEndOf="@+id/cover_img_txt"
-                    app:layout_constraintTop_toBottomOf="@+id/product_name_txt"
-                    app:layout_constraintVertical_bias="0.0" />
-
-                <TextView
-                    android:id="@+id/prod_sp_txt"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="RS :200"
-                    android:textColor="#000"
-                    android:textSize="25sp"
-                    android:textStyle="bold"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.152"
-                    app:layout_constraintStart_toEndOf="@+id/cover_img_txt"
-                    app:layout_constraintTop_toBottomOf="@+id/product_desc_txt"
-                    app:layout_constraintVertical_bias="0.818" />
+                <!--                <TextView-->
+<!--                    android:id="@+id/prod_sp_txt"-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:text="RS :200"-->
+<!--                    android:textColor="#000"-->
+<!--                    android:textSize="25sp"-->
+<!--                    android:textStyle="bold"-->
+<!--                    app:layout_constraintBottom_toBottomOf="parent"-->
+<!--                    app:layout_constraintEnd_toEndOf="parent"-->
+<!--                    app:layout_constraintHorizontal_bias="0.152"-->
+<!--                    app:layout_constraintStart_toEndOf="@+id/cover_img_txt"-->
+<!--                    app:layout_constraintTop_toBottomOf="@+id/product_desc_txt"-->
+<!--                    app:layout_constraintVertical_bias="0.818" />-->
 
                 <TextView
                     android:id="@+id/prod_MRP_txt"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="228dp"
+                    android:layout_height="36dp"
+                    android:layout_marginBottom="20dp"
                     android:text="MRP:30000"
                     android:textColor="#000"
                     android:textSize="25sp"
                     android:textStyle="bold"
-                    app:layout_constraintStart_toEndOf="@+id/prod_sp_txt"
-                    app:layout_constraintTop_toBottomOf="@+id/product_desc_txt"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.0"
-                    app:layout_constraintVertical_bias="0.0"/>
+                    app:layout_constraintHorizontal_bias="0.8"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/cover_img_txt"
+                    app:layout_constraintVertical_bias="0.981" />
+
+                <TextView
+                    android:id="@+id/currency"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="₹"
+                    android:textColor="#000"
+                    android:textSize="25sp"
+                    android:textStyle="bold"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.04"
+                    app:layout_constraintStart_toEndOf="@+id/cover_img_txt"
+                    app:layout_constraintTop_toBottomOf="@+id/product_name_txt"
+                    app:layout_constraintVertical_bias="0.222" />
 
 
             </androidx.constraintlayout.widget.ConstraintLayout>

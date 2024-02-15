@@ -36,7 +36,7 @@ public class view_product extends AppCompatActivity {
     MyDatabaseHelper myDB;
     RecyclerView view_product_recyclerview;
     ProductAdaptor productAdapter;
-    ArrayList<String> productIds, productNames, productDescriptions, productMRPs, productSPs, productcategory;
+    ArrayList<String> productIds, productNames, productMRPs, productcategory;
 
     ArrayList<byte[]> productcov_img, productselected_img;
     ImageView left_icon_product;
@@ -89,17 +89,15 @@ public class view_product extends AppCompatActivity {
         // Initialize adaptor lists here
         productIds = new ArrayList<>();
         productNames = new ArrayList<>();
-        productDescriptions = new ArrayList<>();
-        productMRPs = new ArrayList<>();
-        productSPs = new ArrayList<>();
-        productcategory = new ArrayList<>();
+         productMRPs = new ArrayList<>();
+         productcategory = new ArrayList<>();
         productcov_img = new ArrayList<>();
         productselected_img = new ArrayList<>();
     }
 
 
     private void setupRecyclerView() {
-        productAdapter = new ProductAdaptor(this, productIds, productNames, productDescriptions, productMRPs, productSPs, productcategory, productcov_img, productselected_img);
+        productAdapter = new ProductAdaptor(this, productIds, productNames, productMRPs,  productcategory, productcov_img, productselected_img);
         view_product_recyclerview.setAdapter(productAdapter);
         view_product_recyclerview.setLayoutManager(new LinearLayoutManager(this));
     }
@@ -113,9 +111,7 @@ public class view_product extends AppCompatActivity {
             while (cursor.moveToNext()) {
                 productIds.add(cursor.getString(0));
                 productNames.add(cursor.getString(1));
-                productDescriptions.add(cursor.getString(2));
-                productMRPs.add(cursor.getString(3));
-                productSPs.add(cursor.getString(4));
+                 productMRPs.add(cursor.getString(3));
                 productcategory.add(cursor.getString(5));
 
                 // For cover image
