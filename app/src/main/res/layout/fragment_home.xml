@@ -23,7 +23,7 @@
         app:cardCornerRadius="20dp">
 
         <com.denzcoskun.imageslider.ImageSlider
-            android:id="@+id/image_slider"
+            android:id="@+id/image_slider_banner"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             app:iss_auto_cycle="true"
