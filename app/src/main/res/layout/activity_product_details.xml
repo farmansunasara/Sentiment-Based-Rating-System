@@ -92,7 +92,7 @@
       tools:ignore="MissingConstraints" />
 
   <TextView
-      android:id="@+id/textView13"
+      android:id="@+id/addToCartTextView"
       android:layout_width="0dp"
       android:layout_height="wrap_content"
       android:text="Add To Cart"

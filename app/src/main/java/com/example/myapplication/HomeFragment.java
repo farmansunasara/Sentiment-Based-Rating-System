@@ -20,6 +20,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
+import com.denzcoskun.imageslider.ImageSlider;
+
 import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.IOException;
@@ -33,6 +35,7 @@ public class HomeFragment extends Fragment {
     MyDatabaseHelper myDB;
     private UserCategoryAdaptor userCategoryAdaptor;
     private UserProductAdaptor userProductAdaptor;
+    private ImageSlider imageSlider;
 
     ArrayList<String> categoryIds, categoryNames;
     ArrayList<byte[]> categoryImages;
@@ -174,7 +177,7 @@ public class HomeFragment extends Fragment {
         categoryRecycler.setAdapter(userCategoryAdaptor);
         categoryRecycler.setLayoutManager(new LinearLayoutManager(getActivity(), LinearLayoutManager.HORIZONTAL, false));
 
-        userProductAdaptor = new UserProductAdaptor(getActivity(), productIds, productNames, productDescriptions, productMRPs, productSPs, productcategory, productcov_img, productselected_img);
+        userProductAdaptor = new UserProductAdaptor(getActivity(),myDB, productIds, productNames, productDescriptions, productMRPs, productSPs, productcategory, productcov_img, productselected_img);
         productRecycler.setAdapter(userProductAdaptor);
         productRecycler.setLayoutManager(new LinearLayoutManager(getActivity()));
     }

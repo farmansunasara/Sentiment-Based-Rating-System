@@ -1,5 +1,7 @@
 package com.example.myapplication;
 
+import static android.content.Intent.getIntent;
+
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
@@ -8,8 +10,10 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -30,10 +34,12 @@ public class UserProductAdaptor extends RecyclerView.Adapter<UserProductAdaptor.
     private ArrayList<String> prod_category;
     private ArrayList<byte[]> cov_img;
     private ArrayList<byte[]> selected_img;
+    MyDatabaseHelper myDB;
 
 
-    UserProductAdaptor(Context context, ArrayList<String> prod_id, ArrayList<String> prod_name, ArrayList<String> prod_desc, ArrayList<String> prod_mrp, ArrayList<String> prod_sp, ArrayList<String> prod_category, ArrayList<byte[]> cov_img, ArrayList<byte[]> selected_img) {
+    UserProductAdaptor(Context context, MyDatabaseHelper myDB, ArrayList<String> prod_id, ArrayList<String> prod_name, ArrayList<String> prod_desc, ArrayList<String> prod_mrp, ArrayList<String> prod_sp, ArrayList<String> prod_category, ArrayList<byte[]> cov_img, ArrayList<byte[]> selected_img) {
         this.context = context;
+        this.myDB = myDB; // Assign the passed MyDatabaseHelper object to myDB
         this.prod_id = prod_id;
         this.prod_name = prod_name;
         this.prod_desc = prod_desc;
@@ -42,7 +48,6 @@ public class UserProductAdaptor extends RecyclerView.Adapter<UserProductAdaptor.
         this.prod_category = prod_category;
         this.cov_img = cov_img;
         this.selected_img = selected_img;
-
     }
 
     @NonNull
@@ -98,6 +103,14 @@ public class UserProductAdaptor extends RecyclerView.Adapter<UserProductAdaptor.
 
             });
 
+            holder.button2.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    addToCart(currentcov_img, currentprodId, currentprodName, currentprod_sp);
+                }
+            });
+
+
             if (currentcov_img != null) {
                 try {
                     Bitmap bitmap = BitmapFactory.decodeByteArray(currentcov_img, 0, currentcov_img.length);
@@ -147,6 +160,7 @@ public class UserProductAdaptor extends RecyclerView.Adapter<UserProductAdaptor.
     public class MyViewHolder extends RecyclerView.ViewHolder  {
         TextView product_name_txt, product_desc_txt, prod_sp_txt, prod_MRP_txt,prod_category_txt;
         ImageView cover_img_txt,prod_img_txt;
+        Button button2;
 
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -158,8 +172,31 @@ public class UserProductAdaptor extends RecyclerView.Adapter<UserProductAdaptor.
            prod_MRP_txt = itemView.findViewById(R.id.prod_MRP_txt);
             cover_img_txt = itemView.findViewById(R.id.cover_img_txt);
             // prod_img_txt=itemView.findViewById(R.id.prod_img_txt);
+            button2=itemView.findViewById(R.id.button2);
 
 
         }
     }
+    private void addToCart(byte[] productCoverImage, String productId, String productName, String productPrice) {
+        // Check if the product is already in the cart
+        boolean alreadyInCart = myDB.checkIfProductInCart(productId);
+
+        // If the product is already in the cart, show a message and return
+        if (alreadyInCart) {
+            Toast.makeText(context, "Product is already in the cart", Toast.LENGTH_SHORT).show();
+            // Optionally, you can implement code to navigate to the cart fragment here
+            return;
+        }
+
+        // Use MyDatabaseHelper to add the product to the cart
+        boolean success = myDB.addToCart(Integer.parseInt(productId), productName, Double.parseDouble(productPrice), 1, productCoverImage);
+
+        // Display a toast message based on the result
+        if (success) {
+            Toast.makeText(context, "Product added to cart", Toast.LENGTH_SHORT).show();
+        } else {
+            Toast.makeText(context, "Failed to add product to cart", Toast.LENGTH_SHORT).show();
+        }
+    }
+
 }

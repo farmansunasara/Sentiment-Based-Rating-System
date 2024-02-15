@@ -25,7 +25,7 @@ public class MyDatabaseHelper extends SQLiteOpenHelper {
     private static final String DATABASE_NAME = "Iotshopping.db";
     private static final String EXTERNAL_STORAGE_DIRECTORY = category.EXTERNAL_STORAGE_DIRECTORY;
 
-    private static final int DATABASE_VERSION = 14;
+    private static final int DATABASE_VERSION = 16;
     private static final String TABLE_NAME = "Customer";
 
     private static final String COULMN_ID ="Cust_id";
@@ -53,6 +53,12 @@ public class MyDatabaseHelper extends SQLiteOpenHelper {
     public static final String PRODUCT_COVER_IMAGE = "Product_cover_image";
     public static final String PRODUCT_IMAGE = "Product_IMAGE_path";
     public static final int MAX_PRODUCT_IMAGES = 3;
+
+
+    private static final String TABLE_NAME_SLIDER = "slider";
+    public static final String SLIDER_ID = "Slide_id";
+    public static final String SLIDER_IMAGE = "SLIDER_IMAGE_path";
+    public static final int MAX_SLIDER_IMAGES = 3;
 
 
 
@@ -121,6 +127,16 @@ public class MyDatabaseHelper extends SQLiteOpenHelper {
 
 
 
+
+        String CREATE_TABLE_SLIDER = "CREATE TABLE " + TABLE_NAME_SLIDER + "("
+                + SLIDER_ID + " INTEGER PRIMARY KEY AUTOINCREMENT,"
+                + SLIDER_IMAGE + " TEXT "
+        +")";
+
+
+
+
+
         String CREATE_TABLE_CATEGORY = "CREATE TABLE " + TABLE_NAME_CATEGORY + "("
                 + CATEGORY_ID + " INTEGER PRIMARY KEY AUTOINCREMENT,"
                 + CATEGORY_NAME + " TEXT,"
@@ -148,6 +164,7 @@ public class MyDatabaseHelper extends SQLiteOpenHelper {
         db.execSQL(CREATE_TABLE_CUSTOMER);
         db.execSQL(CREATE_TABLE_PRODUCT);
         db.execSQL(CREATE_TABLE_CATEGORY);
+        db.execSQL(CREATE_TABLE_SLIDER);
 
 
         // Ensure the directory exists
@@ -168,6 +185,7 @@ public class MyDatabaseHelper extends SQLiteOpenHelper {
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_NAME_PRODUCT);
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_NAME_CATEGORY);
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_NAME_CART);
+        db.execSQL("DROP TABLE IF EXISTS "+ TABLE_NAME_SLIDER);
 
         onCreate(db);
 
@@ -216,6 +234,15 @@ public class MyDatabaseHelper extends SQLiteOpenHelper {
         return db.rawQuery(query, null);
     }
 
+
+    Cursor  viewSliderDetails(){
+        String query ="SELECT * FROM " + TABLE_NAME_SLIDER;
+        Log.d("SQLQuery", "Executing query: " + query);
+
+        SQLiteDatabase db = this.getReadableDatabase();
+        return db.rawQuery(query, null);
+    }
+
     public Cursor viewProductDetailsbycategory(String category) {
         String query = "SELECT * FROM " + TABLE_NAME_PRODUCT + " WHERE " + MyDatabaseHelper.PRODUCT_CATEGORY + " = ?";
         Log.d("SQLQuery", "Executing query: " + query);
@@ -255,6 +282,10 @@ public class MyDatabaseHelper extends SQLiteOpenHelper {
         cv.put(CART_PRODUCT_PRICE, productPrice);
         cv.put(CART_PRODUCT_QUANTITY, quantity);
         cv.put(CART_COVER_IMAGE, productCoverImage); // Fix typo
+
+        // Save cover image to external storage and get the file path
+        String coverImagePath = saveImageToExternalStorage("cover_" + productName,productCoverImage);
+        cv.put(PRODUCT_COVER_IMAGE, coverImagePath);
 
         long result = db.insert(TABLE_NAME_CART, null, cv);
         db.close(); // Close the database connection
@@ -360,6 +391,24 @@ public class MyDatabaseHelper extends SQLiteOpenHelper {
             return true;
         }
     }
+
+
+    public boolean addSlider(byte[] sliderImageData) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues cv = new ContentValues();
+        cv.put(SLIDER_IMAGE, sliderImageData); // Corrected column name
+
+        // Save slider image to external storage and get the file path
+        String sliderImagePath = saveImageToExternalStorage("slider_" + System.currentTimeMillis(), sliderImageData); // Use a unique timestamp as the image name
+        cv.put(SLIDER_IMAGE, sliderImagePath); // Corrected column name
+
+        long result = db.insert(TABLE_NAME_SLIDER, null, cv); // Corrected table name
+        db.close();
+
+        return result != -1;
+    }
+
+
 
 
     public boolean addCategory(String Category_name, String Category_imgPath) {

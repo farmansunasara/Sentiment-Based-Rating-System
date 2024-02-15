@@ -50,10 +50,20 @@ public class CartAdaptor extends RecyclerView.Adapter<CartAdaptor.CartViewHolder
         holder.textViewSubtotal.setText("Subtotal: $" + cartItem.getProductSubtotal());
 
         // Convert byte array to Bitmap
-      //  Bitmap bitmap = BitmapFactory.decodeByteArray(cartItem.getCoverImage(), 0, cartItem.getCoverImage().length);
-
-        // Set the Bitmap as the cover image
-        //holder.coverImageView.setImageBitmap(bitmap);
+        String coverImagePath = cartItem.getCoverImagePath();
+        if (coverImagePath != null && !coverImagePath.isEmpty()) {
+            Bitmap bitmap = BitmapFactory.decodeFile(coverImagePath);
+            if (bitmap != null) {
+                // Set the Bitmap as the cover image
+                holder.coverImageView.setImageBitmap(bitmap);
+            } else {
+                // If bitmap is null, you can set a default image or handle the error
+                holder.coverImageView.setImageResource(R.drawable.avtar);
+            }
+        } else {
+            // If the cover image path is empty or null, set a default image or handle the error
+            holder.coverImageView.setImageResource(R.drawable.avtar);
+        }
 
         // Set onClickListener for the remove button
         holder.buttonRemove.setOnClickListener(new View.OnClickListener() {
@@ -78,7 +88,7 @@ public class CartAdaptor extends RecyclerView.Adapter<CartAdaptor.CartViewHolder
         TextView textViewProductPrice;
         TextView textViewProductQuantity;
         TextView textViewSubtotal;
-        Button buttonRemove;
+        ImageView buttonRemove;
 
         public CartViewHolder(@NonNull View itemView) {
             super(itemView);

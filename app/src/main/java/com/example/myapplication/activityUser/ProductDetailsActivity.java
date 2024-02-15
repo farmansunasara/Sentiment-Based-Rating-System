@@ -42,7 +42,7 @@ public class ProductDetailsActivity extends AppCompatActivity {
         productNameTextView = findViewById(R.id.productNameTextView);
         productDescriptionTextView = findViewById(R.id.productDescriptionTextView);
         productPriceTextView = findViewById(R.id.productPriceTextView);
-        addToCartTextView = findViewById(R.id.addtocartproduct);
+        addToCartTextView = findViewById(R.id.addToCartTextView);
 
         // Creating image list
         ArrayList<SlideModel> imageList = new ArrayList<>();

@@ -9,6 +9,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageView;
 
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -25,7 +26,7 @@ public class CartFragment extends Fragment {
     private RecyclerView recyclerViewCartItems;
     private CartAdaptor cartAdapter;
     private List<CartItem> cartItemList;
-    Button buttonRemove;
+    ImageView buttonRemove;
 
 
     @Override
@@ -78,9 +79,11 @@ public class CartFragment extends Fragment {
                 double productPrice = cursor.getDouble(cursor.getColumnIndexOrThrow(MyDatabaseHelper.CART_PRODUCT_PRICE));
                 int quantity = cursor.getInt(cursor.getColumnIndexOrThrow(MyDatabaseHelper.CART_PRODUCT_QUANTITY));
                 double totalPrice = productPrice * quantity;
+                String coverImagePath = cursor.getString(cursor.getColumnIndexOrThrow(MyDatabaseHelper.CART_COVER_IMAGE));
+
 
                 // Create a CartItem object and add it to the cartItemList
-                cartItemList.add(new CartItem(cartItemId, coverImage, productName, productPrice, quantity, totalPrice));
+                cartItemList.add(new CartItem(cartItemId, coverImage, coverImagePath, productName, productPrice, quantity, totalPrice));
             } while (cursor.moveToNext());
 
             // Close the cursor after use

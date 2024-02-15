@@ -21,11 +21,17 @@
         android:layout_width="match_parent"
         android:layout_height="190dp"
         app:cardCornerRadius="20dp">
-        <ImageView
-            android:layout_width="match_parent"
+
+        <com.denzcoskun.imageslider.ImageSlider
+            android:id="@+id/image_slider"
+            android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:scaleType="centerCrop"
-            android:src="@drawable/avtar"/>
+            app:iss_auto_cycle="true"
+            app:iss_delay="1000"
+            app:iss_period="1000"
+            app:iss_text_align="CENTER">
+
+        </com.denzcoskun.imageslider.ImageSlider>
     </com.google.android.material.card.MaterialCardView>
     <RelativeLayout
         android:layout_width="match_parent"

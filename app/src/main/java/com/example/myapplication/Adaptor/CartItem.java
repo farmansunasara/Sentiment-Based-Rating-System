@@ -6,15 +6,17 @@ public class CartItem {
 
     private int cartItemId; // New field to store the ID of the cart item
     private Bitmap coverImage;
+    private String coverImagePath; // New field to store the cover image path
     private String productName;
     private double productPrice;
     private int productQuantity;
     private double productSubtotal;
 
     // Updated constructor with ID parameter
-    public CartItem(int cartItemId, Bitmap coverImage, String productName, double productPrice, int productQuantity, double productSubtotal) {
+    public CartItem(int cartItemId, Bitmap coverImage, String coverImagePath, String productName, double productPrice, int productQuantity, double productSubtotal) {
         this.cartItemId = cartItemId;
         this.coverImage = coverImage;
+        this.coverImagePath = coverImagePath;
         this.productName = productName;
         this.productPrice = productPrice;
         this.productQuantity = productQuantity;
@@ -26,12 +28,13 @@ public class CartItem {
         return cartItemId;
     }
 
-    public Bitmap getCoverImage() {
-        return coverImage;
+    public String getCoverImagePath() {
+        return coverImagePath;
     }
 
-    public void setCoverImage(Bitmap coverImage) {
-        this.coverImage = coverImage;
+    // Setter method for cover image path
+    public void setCoverImagePath(String coverImagePath) {
+        this.coverImagePath = coverImagePath;
     }
 
     public String getProductName() {
@@ -61,8 +64,6 @@ public class CartItem {
     public double getProductSubtotal() {
         return productSubtotal;
     }
-
-
 
     public void setProductSubtotal(double productSubtotal) {
         this.productSubtotal = productSubtotal;

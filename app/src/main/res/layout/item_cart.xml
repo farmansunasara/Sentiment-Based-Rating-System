@@ -15,7 +15,8 @@
             android:padding="16dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.0">
 
             <ImageView
                 android:id="@+id/cover_img_txt"
@@ -68,13 +69,16 @@
                 android:textColor="@android:color/darker_gray"
                 android:textSize="14sp" />
 
-            <Button
+            <ImageView
                 android:id="@+id/buttonRemove"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_alignParentTop="true"
                 android:layout_alignParentEnd="true"
-                android:layout_marginTop="16dp"
-                android:text="Remove" />
+                android:layout_marginTop="26dp"
+                android:layout_marginEnd="25dp"
+                android:src="@drawable/baseline_delete_24" />
+
 
         </RelativeLayout>
 
