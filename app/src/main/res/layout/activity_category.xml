@@ -5,8 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="16dp"
-    tools:context=".category">
+     tools:context=".category">
 
 
     <LinearLayout
@@ -71,6 +70,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Upload Category"
+            android:backgroundTint="@color/my_primary"
             android:layout_marginTop="16dp"
             android:textAllCaps="false"
             android:id="@+id/add_category_btn"
