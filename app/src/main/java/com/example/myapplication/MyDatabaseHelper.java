@@ -29,17 +29,17 @@ public class MyDatabaseHelper extends SQLiteOpenHelper {
     private static final String TABLE_NAME = "Customer";
 
     private static final String COULMN_ID ="Cust_id";
-    private static final String COULMN_NAME = "Cust_Name";
-    private static final String COULMN_EMAIL = "Cust_Email";
-    private static final String COULMN_PASSWORD = "Cust_Password";
+    public static final String COULMN_NAME = "Cust_Name";
+    public static final String COULMN_EMAIL = "Cust_Email";
+    public static final String COULMN_PASSWORD = "Cust_Password";
 
-    private static final String COULMN_MOBILE = "Cust_Mobile_No";
-    private static final String COULMN_ADDRESS = "Cust_Address";
-    private static final String COULMN_CITY = "Cust_City";
-    private static final String COULMN_STATE = "Cust_State";
-    private static final String COULMN_COUNTRY = "Cust_Country";
+    public static final String COULMN_MOBILE = "Cust_Mobile_No";
+    public static final String COULMN_ADDRESS = "Cust_Address";
+    public static final String COULMN_CITY = "Cust_City";
+    public static final String COULMN_STATE = "Cust_State";
+    public static final String COULMN_COUNTRY = "Cust_Country";
 
-    private static final String COULMN_PINCODE = "Cust_Pincode";
+    public static final String COULMN_PINCODE = "Cust_Pincode";
 
     private static final String TABLE_NAME_PRODUCT = "Product";
     private static final String PRODUCT_ID = "Product_id";
@@ -474,6 +474,27 @@ public class MyDatabaseHelper extends SQLiteOpenHelper {
         }
     }
 
+    public boolean updateCustomerDetails(String name, String email, String mobile, String address, String city, String state, String pincode, String country, String password) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues cv = new ContentValues();
+        cv.put(COULMN_NAME, name);
+        cv.put(COULMN_EMAIL, email);
+        cv.put(COULMN_MOBILE, mobile);
+        cv.put(COULMN_ADDRESS, address);
+        cv.put(COULMN_CITY, city);
+        cv.put(COULMN_STATE, state);
+        cv.put(COULMN_PINCODE, pincode);
+        cv.put(COULMN_COUNTRY, country);
+        cv.put(COULMN_PASSWORD, password);
+
+        String whereClause = COULMN_EMAIL + "=?";
+        String[] whereArgs = new String[]{email};
+
+        int rowsUpdated = db.update(TABLE_NAME, cv, whereClause, whereArgs);
+        db.close();
+
+        return rowsUpdated > 0;
+    }
 
 
     public String getCategoryImagePathColumnName() {

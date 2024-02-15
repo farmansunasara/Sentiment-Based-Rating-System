@@ -20,6 +20,9 @@
         android:theme="@style/Theme.MyApplication"
         tools:targetApi="31">
         <activity
+            android:name=".activityUser.CheckoutActivity"
+            android:exported="false" />
+        <activity
             android:name=".activityUser.AddressActivity"
             android:exported="false" />
         <activity
