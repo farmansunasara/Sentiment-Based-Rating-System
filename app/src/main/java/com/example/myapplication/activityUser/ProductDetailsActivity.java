@@ -30,6 +30,8 @@ public class ProductDetailsActivity extends AppCompatActivity {
 
     private ImageSlider imageSlider;
     private byte[] productCoverImage;
+    private boolean alreadyInCart = false;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -61,6 +63,13 @@ public class ProductDetailsActivity extends AppCompatActivity {
         });
     }
 
+    private void updateAddToCartButton() {
+        if (alreadyInCart) {
+            addToCartTextView.setText("Go to Cart");
+        } else {
+            addToCartTextView.setText("Add to Cart");
+        }
+    }
     private void addToCart(byte[] productCoverImage) {
         // Retrieve product details
         String productId = getIntent().getStringExtra("currentProductId");
@@ -68,12 +77,20 @@ public class ProductDetailsActivity extends AppCompatActivity {
         String productPrice = productPriceTextView.getText().toString();
 
         // Check if the product is already in the cart
-        boolean alreadyInCart = myDB.checkIfProductInCart(productId);
+        alreadyInCart = myDB.checkIfProductInCart(productId);
+        updateAddToCartButton();
+
 
         // If the product is already in the cart, show a message and return
         if (alreadyInCart) {
+
             Toast.makeText(ProductDetailsActivity.this, "Product is already in the cart", Toast.LENGTH_SHORT).show();
             // Optionally, you can implement code to navigate to the cart fragment here
+
+            getSupportFragmentManager().beginTransaction()
+                    .replace(R.id.container, new CartFragment())
+                    .addToBackStack(null)
+                    .commit();
             return;
         }
 

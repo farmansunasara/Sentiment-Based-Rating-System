@@ -18,6 +18,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 
 public class MyDatabaseHelper extends SQLiteOpenHelper {
 
@@ -25,7 +26,7 @@ public class MyDatabaseHelper extends SQLiteOpenHelper {
     private static final String DATABASE_NAME = "Iotshopping.db";
     private static final String EXTERNAL_STORAGE_DIRECTORY = category.EXTERNAL_STORAGE_DIRECTORY;
 
-    private static final int DATABASE_VERSION = 16;
+    private static final int DATABASE_VERSION = 17;
     private static final String TABLE_NAME = "Customer";
 
     private static final String COULMN_ID ="Cust_id";
@@ -77,10 +78,14 @@ public class MyDatabaseHelper extends SQLiteOpenHelper {
     public static final String CART_PRODUCT_PRICE = "Product_price";
     public static final String CART_PRODUCT_QUANTITY = "Product_quantity";
 
+    private static final String TABLE_NAME_ORDER = "Order_Details";
+    public static final String ORDER_ID = "Order_id";
+    public static final String ORDER_TOTAL_AMOUNT = "Total_Amount";
+    public static final String ORDER_DATE = "Ord_date";
+    public static final String ORDER_ADDRESS = "Address";
 
-
-
-
+    public static final String ORDER_PAYMENT_METHOD = "payment_method";
+    public static final String ORDER_STATUS = "Ord_Status";
 
     public MyDatabaseHelper(@Nullable Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
@@ -155,6 +160,15 @@ public class MyDatabaseHelper extends SQLiteOpenHelper {
                 + " FOREIGN KEY (" + CART_PRODUCT_ID + ") REFERENCES " + TABLE_NAME_PRODUCT + "(" + PRODUCT_ID + ")"
                 + ")";
 
+        String CREATE_TABLE_ORDER = "CREATE TABLE " + TABLE_NAME_ORDER + "("
+                + ORDER_ID + " INTEGER PRIMARY KEY AUTOINCREMENT,"
+                + ORDER_TOTAL_AMOUNT + " REAL,"
+                + ORDER_DATE + " TEXT,"
+                + ORDER_ADDRESS + " TEXT," // Add a comma here
+                + ORDER_PAYMENT_METHOD + " TEXT,"
+                + ORDER_STATUS + " TEXT"
+                + ")";
+
 
 
 
@@ -165,6 +179,7 @@ public class MyDatabaseHelper extends SQLiteOpenHelper {
         db.execSQL(CREATE_TABLE_PRODUCT);
         db.execSQL(CREATE_TABLE_CATEGORY);
         db.execSQL(CREATE_TABLE_SLIDER);
+        db.execSQL(CREATE_TABLE_ORDER);
 
 
         // Ensure the directory exists
@@ -185,7 +200,9 @@ public class MyDatabaseHelper extends SQLiteOpenHelper {
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_NAME_PRODUCT);
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_NAME_CATEGORY);
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_NAME_CART);
-        db.execSQL("DROP TABLE IF EXISTS "+ TABLE_NAME_SLIDER);
+        db.execSQL("DROP TABLE IF EXISTS " + TABLE_NAME_SLIDER);
+        db.execSQL("DROP TABLE IF EXISTS " + TABLE_NAME_ORDER);
+
 
         onCreate(db);
 
@@ -193,6 +210,11 @@ public class MyDatabaseHelper extends SQLiteOpenHelper {
 
     }
 
+    public void clearCart() {
+        SQLiteDatabase db = this.getWritableDatabase();
+        db.delete(TABLE_NAME_CART, null, null);
+        db.close();
+    }
     void addCustomer(String name,String email,String password,String mobile,String address,String city,String state,String country, int pincode){
 
         SQLiteDatabase db=this.getWritableDatabase();
@@ -496,7 +518,7 @@ public class MyDatabaseHelper extends SQLiteOpenHelper {
         return rowsUpdated > 0;
     }
 
-    Cursor viewCustomerDetailsforprofile(String userEmail) {
+    public Cursor viewCustomerDetailsforprofile(String userEmail) {
         String query = "SELECT * FROM " + TABLE_NAME + " WHERE " + COULMN_EMAIL + " = ?";
         SQLiteDatabase db = this.getReadableDatabase();
         Cursor cursor = null;
@@ -514,6 +536,22 @@ public class MyDatabaseHelper extends SQLiteOpenHelper {
     public static String getExternalStorageDirectoryPath() {
         return EXTERNAL_STORAGE_DIRECTORY;
     }
+
+    public long insertOrder(double totalAmount, String address, String paymentMethod, String status) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues values = new ContentValues();
+        values.put(ORDER_TOTAL_AMOUNT, totalAmount);
+        values.put(ORDER_DATE, getCurrentDateTime());
+        values.put(ORDER_ADDRESS, address);
+        values.put(ORDER_PAYMENT_METHOD, paymentMethod);
+        values.put(ORDER_STATUS, status);
+        return db.insert(TABLE_NAME_ORDER, null, values);
+    }
+    private String getCurrentDateTime() {
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.getDefault());
+        return sdf.format(new Date());
+    }
+
 
 
 }
