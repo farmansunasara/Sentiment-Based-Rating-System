@@ -496,6 +496,17 @@ public class MyDatabaseHelper extends SQLiteOpenHelper {
         return rowsUpdated > 0;
     }
 
+    Cursor viewCustomerDetailsforprofile(String userEmail) {
+        String query = "SELECT * FROM " + TABLE_NAME + " WHERE " + COULMN_EMAIL + " = ?";
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor cursor = null;
+        if (db != null) {
+            cursor = db.rawQuery(query, new String[]{userEmail});
+        }
+        return cursor;
+    }
+
+
 
     public String getCategoryImagePathColumnName() {
         return CATEGORY_IMG_PATH;

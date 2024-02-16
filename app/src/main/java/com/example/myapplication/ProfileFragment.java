@@ -1,5 +1,7 @@
 package com.example.myapplication;
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.os.Bundle;
 
@@ -28,10 +30,10 @@ public class ProfileFragment extends Fragment {
         private TextInputEditText cityEditText;
         private MaterialButton update;
 
-    private TextInputEditText stateEditText;
-    private TextInputEditText countryEditText;
-    private TextInputEditText pincodeEditText;
-    private TextInputEditText pwdEditText;
+        private TextInputEditText stateEditText;
+        private TextInputEditText countryEditText;
+        private TextInputEditText pincodeEditText;
+        private TextInputEditText pwdEditText;
 
 
     // Add more fields as needed
@@ -64,11 +66,14 @@ public class ProfileFragment extends Fragment {
             pwdEditText = view.findViewById(R.id.txtPwd);
             update=view.findViewById(R.id.update);
 
+            SharedPreferences loginPreference = getActivity().getSharedPreferences("loginPrefs", Context.MODE_PRIVATE);
+            String loggedInUserEmail = loginPreference.getString("userEmail", "");
+
 
             // Initialize more EditText fields as needed
 
             // Retrieve user details and populate fields
-            retrieveAndPopulateUserDetails();
+            retrieveAndPopulateUserDetails(loggedInUserEmail);
 
             update.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -105,8 +110,8 @@ public class ProfileFragment extends Fragment {
         }
     }
 
-    private void retrieveAndPopulateUserDetails() {
-        Cursor cursor = databaseHelper.viewCustomerDetails();
+    private void retrieveAndPopulateUserDetails(String loggedInUserEmail) {
+        Cursor cursor = databaseHelper.viewCustomerDetailsforprofile(loggedInUserEmail);
 
         if (cursor != null) {
             // Check if the cursor has data

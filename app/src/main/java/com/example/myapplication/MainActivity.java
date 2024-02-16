@@ -20,7 +20,6 @@ import com.google.android.material.button.MaterialButton;
 
 public class MainActivity extends AppCompatActivity {
 
-//    CheckBox remember_me_checkbox = findViewById(R.id.remember_me_checkbox);
     MyDatabaseHelper myDB;
     String username,password;
     SharedPreferences loginPreference;
@@ -72,13 +71,16 @@ public class MainActivity extends AppCompatActivity {
                             Toast.makeText(MainActivity.this, "Login successful!", Toast.LENGTH_SHORT).show();
                             // Proceed to next activity or perform other actions
 
+                            saveUserEmailToSharedPreferences(email);
+
+
 
                             Intent intent = new Intent(MainActivity.this, UserMain.class);
                             startActivity(intent);
                         } else if (emailEditText.getText().toString().equals("admin") && passwordEditText.getText().toString().equals("admin")) {
                             Toast.makeText(MainActivity.this, "Login Successfull", Toast.LENGTH_SHORT).show();
 
-
+                            saveUserEmailToSharedPreferences("admin");
 
                             Intent intent = new Intent(MainActivity.this, Admin.class);
                             startActivity(intent);
@@ -133,6 +135,12 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+    private void saveUserEmailToSharedPreferences(String email) {
+        SharedPreferences loginPreference = getSharedPreferences("loginPrefs", MODE_PRIVATE);
+        SharedPreferences.Editor loginPrefsEditor = loginPreference.edit();
+        loginPrefsEditor.putString("userEmail", email);
+        loginPrefsEditor.apply();
+    }
     public void doSomethingElse() {
         startActivity(new Intent(MainActivity.this, UserMain.class));
         MainActivity.this.finish();
