@@ -70,7 +70,8 @@ public class MainActivity extends AppCompatActivity {
                         if (emailPasswordMatched) {
                             Toast.makeText(MainActivity.this, "Login successful!", Toast.LENGTH_SHORT).show();
                             // Proceed to next activity or perform other actions
-
+                            long customerId = myDB.getCustomerIdByEmail(email);
+                            storeCustomerIdInSharedPreferences(customerId);
                             saveUserEmailToSharedPreferences(email);
 
 
@@ -144,6 +145,12 @@ public class MainActivity extends AppCompatActivity {
     public void doSomethingElse() {
         startActivity(new Intent(MainActivity.this, UserMain.class));
         MainActivity.this.finish();
+    }
+    private void storeCustomerIdInSharedPreferences(long customerId) {
+        SharedPreferences sharedPreferences = getSharedPreferences("MyPrefs", Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.putLong("customerId", customerId);
+        editor.apply();
     }
 
 

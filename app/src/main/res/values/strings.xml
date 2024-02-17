@@ -66,6 +66,14 @@
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="title_activity_order_summary">OrderSummaryActivity</string>
+    <string-array name="order_status">
+        <item>Pending</item>
+        <item>Processing</item>
+        <item>Shipped</item>
+        <item>Delivered</item>
+        <!-- Add more status items as needed -->
+    </string-array>
+
 
 
 </resources>

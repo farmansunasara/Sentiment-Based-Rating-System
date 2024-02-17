@@ -1,17 +1,59 @@
-<?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@drawable/backkkk"
-    tools:context=".SettingFragment">
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+   >
 
-    <!-- TODO: Update blank fragment layout -->
+    <!-- Order details -->
+
+<include layout="@layout/order_toolbar"
+
+    />
+    <!-- Divider -->
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@android:color/darker_gray"
+        android:padding="16dp"
+        android:layout_marginBottom="16dp"/>
+
+    <!-- Product list -->
     <TextView
-        android:layout_width="wrap_content"
+        android:id="@+id/textViewProductsHeader"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textSize="26dp"
-        android:layout_gravity="center"
-        android:text="Setting_fragment" />
+        android:padding="16dp"
+        android:text="Products"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        android:layout_marginBottom="8dp"/>
 
-</FrameLayout>
+    <!-- Product items -->
+    <LinearLayout
+        android:id="@+id/linearlayoutOrderProducts"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:paddingStart="8dp"
+        android:paddingEnd="8dp"
+        android:layout_marginBottom="16dp"/>
+
+    <!-- Divider -->
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:padding="16dp"
+        android:background="@android:color/darker_gray"
+        android:layout_marginBottom="16dp"/>
+
+    <!-- Total amount -->
+    <TextView
+        android:id="@+id/textViewTotalAmount"
+        android:padding="16dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Total Amount: $45.00"
+        android:textSize="18sp"
+        android:textStyle="bold"/>
+
+</LinearLayout>

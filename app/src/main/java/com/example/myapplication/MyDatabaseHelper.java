@@ -16,6 +16,7 @@ import java.io.FileOutputStream;
 import java.io.OutputStream;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
 import java.util.Locale;
@@ -26,7 +27,7 @@ public class MyDatabaseHelper extends SQLiteOpenHelper {
     private static final String DATABASE_NAME = "Iotshopping.db";
     private static final String EXTERNAL_STORAGE_DIRECTORY = category.EXTERNAL_STORAGE_DIRECTORY;
 
-    private static final int DATABASE_VERSION = 17;
+    private static final int DATABASE_VERSION = 18;
     private static final String TABLE_NAME = "Customer";
 
     private static final String COULMN_ID ="Cust_id";
@@ -164,9 +165,11 @@ public class MyDatabaseHelper extends SQLiteOpenHelper {
                 + ORDER_ID + " INTEGER PRIMARY KEY AUTOINCREMENT,"
                 + ORDER_TOTAL_AMOUNT + " REAL,"
                 + ORDER_DATE + " TEXT,"
-                + ORDER_ADDRESS + " TEXT," // Add a comma here
+                + ORDER_ADDRESS + " TEXT,"
                 + ORDER_PAYMENT_METHOD + " TEXT,"
-                + ORDER_STATUS + " TEXT"
+                + ORDER_STATUS + " TEXT,"
+                + COULMN_ID + " INTEGER,"  // Foreign key referencing Customer table
+                + " FOREIGN KEY (" + COULMN_ID + ") REFERENCES " + TABLE_NAME + "(" + COULMN_ID + ")"
                 + ")";
 
 
@@ -537,7 +540,7 @@ public class MyDatabaseHelper extends SQLiteOpenHelper {
         return EXTERNAL_STORAGE_DIRECTORY;
     }
 
-    public long insertOrder(double totalAmount, String address, String paymentMethod, String status) {
+    public long insertOrder(long customerId, double totalAmount, String address, String paymentMethod, String status) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues values = new ContentValues();
         values.put(ORDER_TOTAL_AMOUNT, totalAmount);
@@ -545,11 +548,147 @@ public class MyDatabaseHelper extends SQLiteOpenHelper {
         values.put(ORDER_ADDRESS, address);
         values.put(ORDER_PAYMENT_METHOD, paymentMethod);
         values.put(ORDER_STATUS, status);
+        values.put(COULMN_ID, customerId); // Insert the customer ID into the order table
         return db.insert(TABLE_NAME_ORDER, null, values);
     }
+
     private String getCurrentDateTime() {
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.getDefault());
         return sdf.format(new Date());
+    }
+
+    public long getCustomerIdByEmail(String email) {
+        SQLiteDatabase db = this.getReadableDatabase();
+        long customerId = -1;
+        String[] columns = { COULMN_ID };
+        String selection = COULMN_EMAIL + "=?";
+        String[] selectionArgs = { email };
+        Cursor cursor = db.query(TABLE_NAME, columns, selection, selectionArgs, null, null, null);
+        if (cursor != null && cursor.moveToFirst()) {
+            int columnIndex = cursor.getColumnIndex(COULMN_ID);
+            if (columnIndex != -1) { // Check if columnIndex is valid
+                customerId = cursor.getLong(columnIndex);
+            } else {
+                // Log an error or handle the situation where the column index is not found
+                Log.e("getCustomerIdByEmail", "Column index not found for column: " + COULMN_ID);
+            }
+            cursor.close();
+        }
+        db.close();
+        return customerId;
+    }
+
+    public List<Order> getOrderDataFromDatabase() {
+        List<Order> orders = new ArrayList<>();
+        SQLiteDatabase db = this.getReadableDatabase();
+        String[] columns = {ORDER_ID, ORDER_TOTAL_AMOUNT, ORDER_DATE, ORDER_ADDRESS, ORDER_PAYMENT_METHOD, ORDER_STATUS, COULMN_ID};
+        Cursor cursor = db.query(TABLE_NAME_ORDER, columns, null, null, null, null, null);
+        if (cursor != null) {
+            if (cursor.moveToFirst()) {
+                do {
+                    long orderId = cursor.getLong(cursor.getColumnIndexOrThrow(ORDER_ID));
+                    double totalAmount = cursor.getDouble(cursor.getColumnIndexOrThrow(ORDER_TOTAL_AMOUNT));
+                    String orderDate = cursor.getString(cursor.getColumnIndexOrThrow(ORDER_DATE));
+                    String address = cursor.getString(cursor.getColumnIndexOrThrow(ORDER_ADDRESS));
+                    String paymentMethod = cursor.getString(cursor.getColumnIndexOrThrow(ORDER_PAYMENT_METHOD));
+                    String status = cursor.getString(cursor.getColumnIndexOrThrow(ORDER_STATUS));
+                    long customerId = cursor.getLong(cursor.getColumnIndexOrThrow(COULMN_ID));
+
+                    // Get customer name from Customer table using customerId
+                    String customerName = getCustomerNameById(customerId);
+
+                    // Get products associated with the order
+                    List<String> products = getProductsForOrder(orderId);
+
+                    // Create Order object and add it to the list
+                    Order order = new Order(orderId, totalAmount, orderDate, address, paymentMethod, status, customerName, products);
+                    orders.add(order);
+                } while (cursor.moveToNext());
+            } else {
+                Log.d("Cursor", "No rows found in the cursor.");
+            }
+            cursor.close();
+        } else {
+            Log.e("Cursor", "Cursor is null.");
+        }
+        db.close();
+        return orders;
+    }
+
+    private List<String> getProductsForOrder(long orderId) {
+        List<String> products = new ArrayList<>();
+        // Implement the logic to fetch products associated with the given order ID from the database
+        // You may need to execute a query to retrieve the products from the database
+        // and populate the products list accordingly
+        // This could involve querying the Order_Items table or a similar table that stores order-product relationships
+        // For demonstration purposes, I'll return an empty list
+        return products;
+    }
+    public String getCustomerNameById(long customerId) {
+        SQLiteDatabase db = this.getReadableDatabase();
+        String customerName = null;
+        String[] columns = {COULMN_NAME};
+        String selection = COULMN_ID + "=?";
+        String[] selectionArgs = {String.valueOf(customerId)};
+        Cursor cursor = db.query(TABLE_NAME, columns, selection, selectionArgs, null, null, null);
+        if (cursor != null && cursor.moveToFirst()) {
+            customerName = cursor.getString(0); // Use the first column index directly
+            cursor.close();
+        }
+        db.close();
+        return customerName;
+    }
+    public List<Order> getOrderListFromDatabase() {
+        List<Order> orderList = new ArrayList<>(); // Corrected variable name
+        String selectQuery = "SELECT * FROM " + TABLE_NAME_ORDER;
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor cursor = db.rawQuery(selectQuery, null);
+        // Loop through all rows and add to list
+        if (cursor != null) {
+            if (cursor.moveToFirst()) {
+                do {
+                    long orderId = cursor.getLong(cursor.getColumnIndexOrThrow(ORDER_ID));
+                    double totalAmount = cursor.getDouble(cursor.getColumnIndexOrThrow(ORDER_TOTAL_AMOUNT));
+                    String orderDate = cursor.getString(cursor.getColumnIndexOrThrow(ORDER_DATE));
+                    String address = cursor.getString(cursor.getColumnIndexOrThrow(ORDER_ADDRESS));
+                    String paymentMethod = cursor.getString(cursor.getColumnIndexOrThrow(ORDER_PAYMENT_METHOD));
+                    String status = cursor.getString(cursor.getColumnIndexOrThrow(ORDER_STATUS));
+                    long customerId = cursor.getLong(cursor.getColumnIndexOrThrow(COULMN_ID));
+
+                    // Get customer name from Customer table using customerId
+                    String customerName = getCustomerNameById(customerId);
+
+                    // Get products associated with the order
+                    List<String> products = getProductsForOrder(orderId);
+
+                    // Create Order object and add it to the list
+                    Order order = new Order(orderId, totalAmount, orderDate, address, paymentMethod, status, customerName, products);
+                    orderList.add(order); // Corrected variable name
+                } while (cursor.moveToNext());
+            } else {
+                Log.d("Cursor", "No rows found in the cursor.");
+            }
+            cursor.close();
+        } else {
+            Log.e("Cursor", "Cursor is null.");
+        }
+        db.close();
+        return orderList; // Corrected return statement
+    }
+
+
+    public boolean updateOrderStatus(long orderId, String newStatus) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues values = new ContentValues();
+        values.put(ORDER_STATUS, newStatus);
+
+        String whereClause = ORDER_ID + "=?";
+        String[] whereArgs = new String[]{String.valueOf(orderId)};
+
+        int rowsUpdated = db.update(TABLE_NAME_ORDER, values, whereClause, whereArgs);
+        db.close();
+
+        return rowsUpdated > 0;
     }
 
 

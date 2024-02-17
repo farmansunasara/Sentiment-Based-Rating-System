@@ -70,8 +70,10 @@ public class OrderSummaryActivity extends AppCompatActivity {
         // Set initial status to Pending
         String status = "Pending";
 
+        long customerId = getCustomerIdFromSharedPreferences(); // Example method to retrieve customer ID
+
         // Insert order details into the database
-        long orderId = dbHelper.insertOrder(totalAmount, address, paymentMethod, status);
+        long orderId = dbHelper.insertOrder(customerId, totalAmount, address, paymentMethod, status);
 
         if (orderId != -1) {
             // Order saved successfully
@@ -92,6 +94,10 @@ public class OrderSummaryActivity extends AppCompatActivity {
         }
     }
 
+    private long getCustomerIdFromSharedPreferences() {
+        SharedPreferences sharedPreferences = getSharedPreferences("MyPrefs", Context.MODE_PRIVATE);
+        return sharedPreferences.getLong("customerId", -1); // Default value -1 if not found
+    }
     private void populateOrderSummary() {
         StringBuilder orderSummaryBuilder = new StringBuilder();
         double totalAmount = 0;
