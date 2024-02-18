@@ -111,7 +111,7 @@ public class CartFragment extends Fragment {
         cartAdapter.notifyDataSetChanged();
 
         // Set total amount
-        textViewTotal.setText("Total: $" + String.format("%.2f", totalAmount));
+        textViewTotal.setText("Total: ₹" + String.format("%.2f", totalAmount));
         final double finalTotalAmount = totalAmount;
         buttonCheckout.setOnClickListener(new View.OnClickListener() {
             @Override

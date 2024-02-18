@@ -1,14 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_margin="5dp"
-    app:cardCornerRadius="10dp"
-    android:padding="10dp"
-    app:cardBackgroundColor="@color/lightgrey"
-    android:elevation="10dp">
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="5dp"
+        android:layout_marginBottom="20dp"
+        android:paddingTop="30dp"
+        app:cardCornerRadius="50dp">
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -22,6 +25,7 @@
             android:padding="8dp">
 
             <TextView
+                android:layout_marginTop="20dp"
                 android:id="@+id/textViewOrderNumber"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -31,6 +35,7 @@
                 android:textColor="@color/black" />
 
             <TextView
+                android:layout_marginTop="20dp"
                 android:id="@+id/textViewOrderDate"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -91,7 +96,9 @@
             android:id="@+id/buttonUpdateStatus"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:backgroundTint="@color/my_primary"
             android:text="Update Status"
+            android:layout_marginBottom="30dp"
             android:layout_gravity="end"
             android:layout_marginEnd="8dp"
             android:layout_marginTop="8dp"/>
@@ -99,3 +106,4 @@
     </LinearLayout>
 
 </androidx.cardview.widget.CardView>
+</LinearLayout>

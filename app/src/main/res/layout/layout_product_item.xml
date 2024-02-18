@@ -82,6 +82,7 @@
                 app:layout_constraintTop_toBottomOf="@+id/prod_category_txt"
                 tools:layout_editor_absoluteY="16dp" />
 
+
             <TextView
                 android:id="@+id/prod_sp_txt"
                 style="@style/Widget.Material3.Button.OutlinedButton"

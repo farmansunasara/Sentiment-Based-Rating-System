@@ -6,7 +6,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import androidx.appcompat.widget.Toolbar;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -22,17 +21,13 @@ public class SettingFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.fragment_setting, container, false);
+        return inflater.inflate(R.layout.fragment_orders, container, false);
     }
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         linearlayoutProducts = view.findViewById(R.id.linearlayoutOrderProducts);
-        Toolbar toolbar = view.findViewById(R.id.toolbarOrder);
-        TextView toolbarTitle =view.findViewById(R.id.toolbarTitle);
-        toolbarTitle.setText("Orders");
-
         databaseHelper = new MyDatabaseHelper(getContext());
 
         displayOrders();

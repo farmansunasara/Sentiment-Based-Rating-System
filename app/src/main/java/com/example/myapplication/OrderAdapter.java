@@ -69,7 +69,7 @@ public class OrderAdapter extends RecyclerView.Adapter<OrderAdapter.OrderViewHol
             textViewOrderNumber.setText("Order Number: " + String.valueOf(order.getOrderId()));
             textViewOrderDate.setText("Order Date: " + order.getOrderDate());
          //   textViewOrderStatus.setText("Order Status: " + order.getStatus());
-            textViewTotalAmount.setText("Total Amount: $" + order.getTotalAmount());
+            textViewTotalAmount.setText("Total Amount: ₹" + order.getTotalAmount());
 
             // Set OnClickListener for the button
             // Inside the OrderAdapter's bind method

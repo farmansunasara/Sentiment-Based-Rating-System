@@ -113,7 +113,7 @@ public class OrderSummaryActivity extends AppCompatActivity {
                 double totalPrice = productPrice * quantity;
 
                 // Append cart item details to the order summary
-                orderSummaryBuilder.append(productName).append(" - $").append(productPrice).append(" x ").append(quantity).append(" = $").append(totalPrice).append("\n");
+                orderSummaryBuilder.append(productName).append(" - ₹").append(productPrice).append(" x ").append(quantity).append(" = ₹").append(totalPrice).append("\n");
 
                 // Update total amount
                 totalAmount += totalPrice;
@@ -124,7 +124,7 @@ public class OrderSummaryActivity extends AppCompatActivity {
         }
 
         // Display total amount in the order summary
-        orderSummaryBuilder.append("\nTotal: $").append(totalAmount);
+        orderSummaryBuilder.append("\nTotal: ₹").append(totalAmount);
 
         // Set the order summary text
         textViewOrderSummary.setText(orderSummaryBuilder.toString());

@@ -54,9 +54,7 @@ public class HomeFragment extends Fragment {
                              Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_home, container, false);
 
-        Toolbar toolbar = rootView.findViewById(R.id.toolbarOrder);
-        TextView toolbarTitle =rootView.findViewById(R.id.toolbarTitle);
-        toolbarTitle.setText("IOTCART");
+
         viewPager = rootView.findViewById(R.id.viewPager);
         myDB = new MyDatabaseHelper(getActivity());
         categoryRecycler = rootView.findViewById(R.id.categoryRecycler);

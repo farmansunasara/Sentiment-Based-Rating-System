@@ -1,16 +1,15 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
-
+    <include layout="@layout/toolbarcart"/>
     <!-- Header -->
     <TextView
         android:id="@+id/textViewCartHeader"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Your Cart"
-        android:textSize="24sp"
+        android:layout_height="47dp"
         android:gravity="center"
-        android:padding="16dp"/>
+        android:padding="16dp"
+        android:textSize="24sp" />
 
     <!-- Cart Items -->
     <androidx.recyclerview.widget.RecyclerView
@@ -34,7 +33,8 @@
             android:id="@+id/textViewTotal"
             android:layout_width="144dp"
             android:layout_height="wrap_content"
-            android:text="Total: $100.00"
+            android:text="Total: ₹100.00"
+            android:textStyle="bold"
             android:textSize="18sp" />
 
         <Button
