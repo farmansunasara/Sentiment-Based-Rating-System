@@ -3,21 +3,25 @@ package com.example.myapplication.activityUser;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.denzcoskun.imageslider.ImageSlider;
 import com.denzcoskun.imageslider.constants.ScaleTypes;
 import com.denzcoskun.imageslider.models.SlideModel;
+import com.example.myapplication.Admin;
 import com.example.myapplication.CartFragment;
 import com.example.myapplication.MyDatabaseHelper;
 import com.example.myapplication.R;
+import com.example.myapplication.UserMain;
 
 import java.io.ByteArrayOutputStream;
 import java.io.File;
@@ -31,6 +35,7 @@ public class ProductDetailsActivity extends AppCompatActivity {
     private ImageSlider imageSlider;
     private byte[] productCoverImage;
     private boolean alreadyInCart = false;
+    Button review;
 
 
     @Override
@@ -45,6 +50,7 @@ public class ProductDetailsActivity extends AppCompatActivity {
         productDescriptionTextView = findViewById(R.id.productDescriptionTextView);
         productPriceTextView = findViewById(R.id.productPriceTextView);
         addToCartTextView = findViewById(R.id.addToCartTextView);
+        review=findViewById(R.id.review);
 
         // Creating image list
         ArrayList<SlideModel> imageList = new ArrayList<>();
@@ -53,6 +59,14 @@ public class ProductDetailsActivity extends AppCompatActivity {
         String currentProductId = getIntent().getStringExtra("currentProductId");
         Log.d("ProductId", "Received product ID: " + currentProductId);
         getProductDetails(currentProductId);
+
+        review.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(ProductDetailsActivity.this, productRatingActivity.class);
+                startActivity(intent);
+            }
+        });
 
         addToCartTextView.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -87,10 +101,17 @@ public class ProductDetailsActivity extends AppCompatActivity {
             Toast.makeText(ProductDetailsActivity.this, "Product is already in the cart", Toast.LENGTH_SHORT).show();
             // Optionally, you can implement code to navigate to the cart fragment here
 
-            getSupportFragmentManager().beginTransaction()
-                    .replace(R.id.container, new CartFragment())
-                    .addToBackStack(null)
-                    .commit();
+            SharedPreferences preference = this.getSharedPreferences("info", MODE_PRIVATE);
+            SharedPreferences.Editor editor = preference.edit();
+            editor.putBoolean("isCart", true);
+            editor.apply();
+            startActivity(new Intent(this, UserMain.class));
+            finish();
+
+//            getSupportFragmentManager().beginTransaction()
+//                    .replace(R.id.container, new CartFragment())
+//                    .addToBackStack(null)
+//                    .commit();
             return;
         }
 

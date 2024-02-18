@@ -260,13 +260,7 @@ public class MyDatabaseHelper extends SQLiteOpenHelper {
     }
 
 
-    Cursor  viewSliderDetails(){
-        String query ="SELECT * FROM " + TABLE_NAME_SLIDER;
-        Log.d("SQLQuery", "Executing query: " + query);
 
-        SQLiteDatabase db = this.getReadableDatabase();
-        return db.rawQuery(query, null);
-    }
 
     public Cursor viewProductDetailsbycategory(String category) {
         String query = "SELECT * FROM " + TABLE_NAME_PRODUCT + " WHERE " + MyDatabaseHelper.PRODUCT_CATEGORY + " = ?";
@@ -431,6 +425,15 @@ public class MyDatabaseHelper extends SQLiteOpenHelper {
         db.close();
 
         return result != -1;
+    }
+
+    Cursor getSliderImagePaths() {
+        String query = "SELECT * FROM " + TABLE_NAME_SLIDER;
+
+        Log.d("SQLQuery", "Executing query: " + query);
+
+        SQLiteDatabase db = this.getReadableDatabase();
+        return db.rawQuery(query, null);
     }
 
 

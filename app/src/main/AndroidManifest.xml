@@ -8,6 +8,7 @@
         android:name="android.permission.MANAGE_EXTERNAL_STORAGE"
         tools:ignore="ScopedStorage" />
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 
     <application
         android:allowBackup="true"
@@ -19,7 +20,12 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.MyApplication"
         tools:targetApi="31">
-
+        <activity
+            android:name=".activityUser.productRatingActivity"
+            android:exported="false" />
+        <activity
+            android:name=".activityUser.MainActivity"
+            android:exported="false" />
         <activity
             android:name=".activityUser.OrderSummaryActivity"
             android:exported="false" />

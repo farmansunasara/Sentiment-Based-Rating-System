@@ -29,20 +29,7 @@
     </com.denzcoskun.imageslider.ImageSlider>
   </com.google.android.material.card.MaterialCardView>
 
-<!--  <TextView-->
-<!--      android:id="@+id/productNameTextView"-->
-<!--      android:layout_width="wrap_content"-->
-<!--      android:layout_height="wrap_content"-->
-<!--      android:text="TextView"-->
-<!--      android:textColor="@color/black"-->
-<!--      android:textSize="18sp"-->
-<!--      android:textStyle="bold"-->
-<!--      app:layout_constraintBottom_toTopOf="@+id/productDescriptionTextView"-->
-<!--      app:layout_constraintEnd_toEndOf="parent"-->
-<!--      app:layout_constraintHorizontal_bias="0.07"-->
-<!--      app:layout_constraintStart_toStartOf="parent"-->
-<!--      app:layout_constraintTop_toBottomOf="@+id/materialCardView"-->
-<!--      app:layout_constraintVertical_bias="0.07999998" />-->
+
   <TextView
       android:id="@+id/productNameTextView"
       android:layout_width="wrap_content"
@@ -59,20 +46,7 @@
       app:layout_constraintVertical_bias="0.06999999"
       tools:ignore="MissingConstraints" />
 
-<!--  <TextView-->
-  <!--      android:id="@+id/productDescriptionTextView"-->
-  <!--      android:layout_width="wrap_content"-->
-  <!--      android:layout_height="wrap_content"-->
-  <!--      android:layout_marginHorizontal="12dp"-->
-  <!--      android:text="TextView"-->
-  <!--      android:textColor="@color/black"-->
-  <!--      android:textSize="16sp"-->
-  <!--      app:layout_constraintBottom_toBottomOf="parent"-->
-  <!--      app:layout_constraintEnd_toEndOf="parent"-->
-  <!--      app:layout_constraintHorizontal_bias="0.095"-->
-  <!--      app:layout_constraintStart_toStartOf="parent"-->
-  <!--      app:layout_constraintTop_toTopOf="parent"-->
-  <!--      app:layout_constraintVertical_bias="0.617" />-->
+
 
 
   <TextView
@@ -91,6 +65,7 @@
       app:layout_constraintVertical_bias="0.04000002"
       tools:ignore="MissingConstraints" />
 
+
   <TextView
       android:id="@+id/addToCartTextView"
       android:layout_width="0dp"
@@ -106,20 +81,7 @@
       app:layout_constraintEnd_toEndOf="parent"
       app:layout_constraintStart_toStartOf="parent" />
 
-<!--  <TextView-->
-<!--      android:id="@+id/productPriceTextView"-->
-<!--      android:layout_width="wrap_content"-->
-<!--      android:layout_height="wrap_content"-->
-<!--      android:text="TextView"-->
-<!--      android:textColor="@color/black"-->
-<!--      android:textSize="18sp"-->
-<!--      android:textStyle="bold"-->
-<!--      app:layout_constraintBottom_toTopOf="@+id/productDescriptionTextView"-->
-<!--      app:layout_constraintEnd_toEndOf="parent"-->
-<!--      app:layout_constraintHorizontal_bias="0.071"-->
-<!--      app:layout_constraintStart_toStartOf="parent"-->
-<!--      app:layout_constraintTop_toBottomOf="@+id/materialCardView"-->
-<!--      app:layout_constraintVertical_bias="0.355" />-->
+
   <TextView
       android:id="@+id/currency"
       android:layout_width="wrap_content"
@@ -151,5 +113,15 @@
       app:layout_constraintTop_toBottomOf="@+id/materialCardView"
       app:layout_constraintVertical_bias="0.120000005"
       tools:ignore="MissingConstraints" />
+
+  <Button
+      android:id="@+id/review"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:text="see review"
+      android:textColor="#000"
+      app:layout_constraintBottom_toTopOf="@+id/addToCartTextView"
+      app:layout_constraintEnd_toEndOf="parent"
+      app:layout_constraintStart_toStartOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

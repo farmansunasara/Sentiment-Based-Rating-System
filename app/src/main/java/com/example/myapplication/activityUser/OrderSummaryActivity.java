@@ -15,6 +15,7 @@ import android.widget.Toast;
 import com.example.myapplication.HomeFragment;
 import com.example.myapplication.MyDatabaseHelper;
 import com.example.myapplication.R;
+import com.example.myapplication.UserMain;
 
 public class OrderSummaryActivity extends AppCompatActivity {
 
@@ -79,14 +80,13 @@ public class OrderSummaryActivity extends AppCompatActivity {
             // Order saved successfully
             dbHelper.clearCart();
 
-            // Navigate to the home fragment
-            getSupportFragmentManager().popBackStack(); // Remove all fragments from the back stack
-            getSupportFragmentManager().beginTransaction()
-                    .replace(R.id.container, new HomeFragment())
-                    .commit();
-
-            // Finish the current activity
+            SharedPreferences preference = this.getSharedPreferences("info", MODE_PRIVATE);
+            SharedPreferences.Editor editor = preference.edit();
+            editor.putBoolean("isCart", true);
+            editor.apply();
+            startActivity(new Intent(this, UserMain.class));
             finish();
+
 
         } else {
             // Failed to save order
