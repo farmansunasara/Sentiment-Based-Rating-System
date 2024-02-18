@@ -50,7 +50,7 @@ public class ProductDetailsActivity extends AppCompatActivity {
         productDescriptionTextView = findViewById(R.id.productDescriptionTextView);
         productPriceTextView = findViewById(R.id.productPriceTextView);
         addToCartTextView = findViewById(R.id.addToCartTextView);
-        review=findViewById(R.id.review);
+        //review=findViewById(R.id.review);
 
         // Creating image list
         ArrayList<SlideModel> imageList = new ArrayList<>();
@@ -60,13 +60,13 @@ public class ProductDetailsActivity extends AppCompatActivity {
         Log.d("ProductId", "Received product ID: " + currentProductId);
         getProductDetails(currentProductId);
 
-        review.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(ProductDetailsActivity.this, productRatingActivity.class);
-                startActivity(intent);
-            }
-        });
+//        review.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                Intent intent = new Intent(ProductDetailsActivity.this, productRatingActivity.class);
+//                startActivity(intent);
+//            }
+//        });
 
         addToCartTextView.setOnClickListener(new View.OnClickListener() {
             @Override
