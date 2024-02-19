@@ -1,5 +1,6 @@
 package com.example.myapplication;
 
+import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -43,7 +44,7 @@ public class SettingFragment extends Fragment {
                 TextView textViewOrderNumber = orderView.findViewById(R.id.textViewOrderNumber);
                 TextView textViewOrderDate = orderView.findViewById(R.id.textViewOrderDate);
                 TextView textViewOrderStatus = orderView.findViewById(R.id.textViewOrderStatus);
-                LinearLayout linearLayoutOrderProducts = orderView.findViewById(R.id.linearlayoutOrderProducts);
+                @SuppressLint({"MissingInflatedId", "LocalSuppress"}) LinearLayout linearLayoutOrderProducts = orderView.findViewById(R.id.linearlayoutOrderProducts);
                 TextView textViewTotalAmount = orderView.findViewById(R.id.textViewTotalAmount);
 
                 textViewOrderNumber.setText("Order Number: " + order.getOrderId());
