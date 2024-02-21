@@ -48,7 +48,7 @@ dependencies {
     implementation("com.github.denzcoskun:ImageSlideshow:0.1.2")
 
     implementation("com.squareup.okhttp3:okhttp:4.9.1")
-    implementation("com.google.code.gson:gson:2.8.8")
+    implementation("com.google.code.gson:gson:2.10")
 
 
 

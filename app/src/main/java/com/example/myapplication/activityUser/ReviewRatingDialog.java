@@ -18,15 +18,14 @@ import okhttp3.RequestBody;
 
 
 import com.example.myapplication.Adaptor.ReviewAdaptor;
-import com.example.myapplication.CategoryAdaptor;
+
 import com.example.myapplication.MyDatabaseHelper;
 import com.example.myapplication.R;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 
-import java.net.URLEncoder;
-import java.util.ArrayList;
+
 import java.util.List;
 
 import okhttp3.OkHttpClient;
