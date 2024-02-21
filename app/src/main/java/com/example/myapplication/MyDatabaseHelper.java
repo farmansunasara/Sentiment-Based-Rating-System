@@ -11,6 +11,8 @@ import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 
+import com.example.myapplication.activityUser.ReviewItem;
+
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.OutputStream;
@@ -27,7 +29,7 @@ public class MyDatabaseHelper extends SQLiteOpenHelper {
     private static final String DATABASE_NAME = "Iotshopping.db";
     private static final String EXTERNAL_STORAGE_DIRECTORY = category.EXTERNAL_STORAGE_DIRECTORY;
 
-    private static final int DATABASE_VERSION = 18;
+    private static final int DATABASE_VERSION = 19;
     private static final String TABLE_NAME = "Customer";
 
     private static final String COULMN_ID ="Cust_id";
@@ -60,7 +62,7 @@ public class MyDatabaseHelper extends SQLiteOpenHelper {
     private static final String TABLE_NAME_SLIDER = "slider";
     public static final String SLIDER_ID = "Slide_id";
     public static final String SLIDER_IMAGE = "SLIDER_IMAGE_path";
-    public static final int MAX_SLIDER_IMAGES = 3;
+
 
 
 
@@ -87,6 +89,16 @@ public class MyDatabaseHelper extends SQLiteOpenHelper {
 
     public static final String ORDER_PAYMENT_METHOD = "payment_method";
     public static final String ORDER_STATUS = "Ord_Status";
+
+    public static final String TABLE_NAME_REVIEWS = "reviews";
+    public static final String Review_ID = "review_id";
+    public static final String COLUMN_REVIEW_TEXT = "review_text";
+    public static final String COLUMN_RATING = "rating";
+    public static final String COLUMN_TIMESTAMP = "timestamp";
+
+
+
+
 
     public MyDatabaseHelper(@Nullable Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
@@ -172,6 +184,12 @@ public class MyDatabaseHelper extends SQLiteOpenHelper {
                 + " FOREIGN KEY (" + COULMN_ID + ") REFERENCES " + TABLE_NAME + "(" + COULMN_ID + ")"
                 + ")";
 
+        String CREATE_REVIEWS_TABLE = "CREATE TABLE " + TABLE_NAME_REVIEWS + " ("
+                + Review_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, "
+                + PRODUCT_NAME + " TEXT NOT NULL, "
+                + COLUMN_REVIEW_TEXT + " TEXT NOT NULL, "
+                + COLUMN_RATING + " REAL NOT NULL, "
+                + COLUMN_TIMESTAMP + " INTEGER NOT NULL);";
 
 
 
@@ -183,6 +201,7 @@ public class MyDatabaseHelper extends SQLiteOpenHelper {
         db.execSQL(CREATE_TABLE_CATEGORY);
         db.execSQL(CREATE_TABLE_SLIDER);
         db.execSQL(CREATE_TABLE_ORDER);
+        db.execSQL(CREATE_REVIEWS_TABLE);
 
 
         // Ensure the directory exists
@@ -205,6 +224,7 @@ public class MyDatabaseHelper extends SQLiteOpenHelper {
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_NAME_CART);
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_NAME_SLIDER);
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_NAME_ORDER);
+        db.execSQL("DROP TABLE IF EXISTS " + TABLE_NAME_REVIEWS);
 
 
         onCreate(db);
@@ -692,6 +712,68 @@ public class MyDatabaseHelper extends SQLiteOpenHelper {
         db.close();
 
         return rowsUpdated > 0;
+    }
+
+
+    public boolean addReview(String productName, String reviewText, double rating) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues cv = new ContentValues();
+        cv.put(PRODUCT_NAME, productName);
+        cv.put(COLUMN_REVIEW_TEXT, reviewText);
+        cv.put(COLUMN_RATING, rating);
+        cv.put(COLUMN_TIMESTAMP, System.currentTimeMillis()); // Add timestamp
+
+        long result = db.insert(TABLE_NAME_REVIEWS, null, cv);
+        db.close();
+
+        return result != -1;
+    }
+
+    public List<ReviewItem> getAllReviews() {
+        List<ReviewItem> reviewList = new ArrayList<>();
+        SQLiteDatabase db = this.getReadableDatabase();
+
+        // Define a projection that specifies which columns from the database
+        // you will actually use after this query.
+        String[] projection = {
+                Review_ID,
+                PRODUCT_NAME,
+                COLUMN_REVIEW_TEXT,
+                COLUMN_RATING,
+                COLUMN_TIMESTAMP
+        };
+
+        // Filter results WHERE "title" = 'My Title'
+        String selection = null;
+        String[] selectionArgs = null;
+
+        // How you want the results sorted in the resulting Cursor
+        String sortOrder =
+                COLUMN_TIMESTAMP + " DESC"; // Sort by timestamp in descending order
+
+        Cursor cursor = db.query(
+                TABLE_NAME_REVIEWS,   // The table to query
+                projection,             // The array of columns to return (pass null to get all)
+                selection,              // The columns for the WHERE clause
+                selectionArgs,          // The values for the WHERE clause
+                null,                   // don't group the rows
+                null,                   // don't filter by row groups
+                sortOrder               // The sort order
+        );
+
+        while (cursor.moveToNext()) {
+            int reviewID = cursor.getInt(cursor.getColumnIndexOrThrow(Review_ID));
+            String productName = cursor.getString(cursor.getColumnIndexOrThrow(PRODUCT_NAME));
+            String reviewText = cursor.getString(cursor.getColumnIndexOrThrow(COLUMN_REVIEW_TEXT));
+            float rating = cursor.getFloat(cursor.getColumnIndexOrThrow(COLUMN_RATING));
+            long timestamp = cursor.getLong(cursor.getColumnIndexOrThrow(COLUMN_TIMESTAMP));
+
+            // Create a ReviewItem object and add it to the list
+            ReviewItem reviewItem = new ReviewItem(productName, reviewText, rating);
+            reviewList.add(reviewItem);
+        }
+        cursor.close();
+        return reviewList;
     }
 
 

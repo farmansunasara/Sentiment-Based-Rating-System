@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="CustomRatingBar" parent="@android:style/Widget.RatingBar">
+        <!-- Change the color of the filled stars -->
+        <item name="android:progressTint">#FFD700</item> <!-- Example color: Gold -->
+    </style>
+</resources>
