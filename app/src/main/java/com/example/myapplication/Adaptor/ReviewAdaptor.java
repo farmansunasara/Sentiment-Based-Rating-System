@@ -36,7 +36,7 @@ public class ReviewAdaptor extends RecyclerView.Adapter<ReviewAdaptor.MyViewHold
     public void onBindViewHolder(@NonNull ReviewAdaptor.MyViewHolder holder, int position) {
 
         ReviewItem reviewItem = reviewList.get(position);
-        holder.reviewDate.setText(reviewItem.getReviewDate());
+        holder.reviewDate.setText(String.valueOf(reviewItem.getReviewDate()));
         holder.reviewText.setText(reviewItem.getReviewText());
         holder.reviewRating.setRating(reviewItem.getReviewRating());
     }

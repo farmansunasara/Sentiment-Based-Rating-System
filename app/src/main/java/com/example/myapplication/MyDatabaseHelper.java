@@ -721,7 +721,7 @@ public class MyDatabaseHelper extends SQLiteOpenHelper {
         cv.put(PRODUCT_NAME, productName);
         cv.put(COLUMN_REVIEW_TEXT, reviewText);
         cv.put(COLUMN_RATING, rating);
-        cv.put(COLUMN_TIMESTAMP, System.currentTimeMillis()); // Add timestamp
+        cv.put(COLUMN_TIMESTAMP, getCurrentDateTime()); // Add timestamp
 
         long result = db.insert(TABLE_NAME_REVIEWS, null, cv);
         db.close();
@@ -766,10 +766,10 @@ public class MyDatabaseHelper extends SQLiteOpenHelper {
             String productName = cursor.getString(cursor.getColumnIndexOrThrow(PRODUCT_NAME));
             String reviewText = cursor.getString(cursor.getColumnIndexOrThrow(COLUMN_REVIEW_TEXT));
             float rating = cursor.getFloat(cursor.getColumnIndexOrThrow(COLUMN_RATING));
-            long timestamp = cursor.getLong(cursor.getColumnIndexOrThrow(COLUMN_TIMESTAMP));
+            String reviewdate = cursor.getString(cursor.getColumnIndexOrThrow(COLUMN_TIMESTAMP));
 
             // Create a ReviewItem object and add it to the list
-            ReviewItem reviewItem = new ReviewItem(productName, reviewText, rating);
+            ReviewItem reviewItem = new ReviewItem(productName, reviewText, rating,reviewdate);
             reviewList.add(reviewItem);
         }
         cursor.close();
