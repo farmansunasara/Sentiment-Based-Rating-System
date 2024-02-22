@@ -51,7 +51,7 @@ public class category extends AppCompatActivity implements CategoryAdaptor.OnIte
     ImageView categoryImage;
     EditText categoryName;
     MaterialButton addCategoryBtn;
-    ImageView left_icon_product;
+    ImageView left_icon_category;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -107,6 +107,7 @@ public class category extends AppCompatActivity implements CategoryAdaptor.OnIte
         categoryImage = findViewById(R.id.categimg);
         categoryName = findViewById(R.id.categoryname);
         addCategoryBtn = findViewById(R.id.add_category_btn);
+        left_icon_category=findViewById(R.id.left_icon_category);
         myDB = new MyDatabaseHelper(this);
 
         categoryRecyclerView = findViewById(R.id.categoryRecyclerview);
@@ -172,7 +173,7 @@ public class category extends AppCompatActivity implements CategoryAdaptor.OnIte
                 startActivityForResult(iGallery, GALLERY_REQ_CODE);
             }
         });
-        left_icon_product.setOnClickListener(new View.OnClickListener() {
+        left_icon_category.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Toast.makeText(category.this, "Back", Toast.LENGTH_SHORT).show();
