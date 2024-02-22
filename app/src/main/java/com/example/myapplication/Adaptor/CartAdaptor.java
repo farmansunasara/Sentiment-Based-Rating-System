@@ -45,9 +45,9 @@ public class CartAdaptor extends RecyclerView.Adapter<CartAdaptor.CartViewHolder
         Log.d("CartItem", "Product Name: " + cartItem.getProductName());
         Log.d("CartItem", "Product Price: " + cartItem.getProductPrice());
         holder.textViewProductName.setText(cartItem.getProductName());
-        holder.textViewProductPrice.setText("Price: $" + cartItem.getProductPrice()); // Set product price
+        holder.textViewProductPrice.setText("Price:₹" + cartItem.getProductPrice()); // Set product price
         holder.textViewProductQuantity.setText("Quantity: " + cartItem.getProductQuantity());
-        holder.textViewSubtotal.setText("Subtotal: $" + cartItem.getProductSubtotal());
+        holder.textViewSubtotal.setText("Subtotal:₹" + cartItem.getProductSubtotal());
 
         // Convert byte array to Bitmap
         String coverImagePath = cartItem.getCoverImagePath();

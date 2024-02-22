@@ -4,15 +4,15 @@ import android.graphics.Bitmap;
 
 public class CartItem {
 
-    private int cartItemId; // New field to store the ID of the cart item
+    private int cartItemId;
     private Bitmap coverImage;
-    private String coverImagePath; // New field to store the cover image path
+    private String coverImagePath;
     private String productName;
     private double productPrice;
     private int productQuantity;
     private double productSubtotal;
 
-    // Updated constructor with ID parameter
+
     public CartItem(int cartItemId, Bitmap coverImage, String coverImagePath, String productName, double productPrice, int productQuantity, double productSubtotal) {
         this.cartItemId = cartItemId;
         this.coverImage = coverImage;
