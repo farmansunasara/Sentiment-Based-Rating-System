@@ -51,6 +51,7 @@ public class category extends AppCompatActivity implements CategoryAdaptor.OnIte
     ImageView categoryImage;
     EditText categoryName;
     MaterialButton addCategoryBtn;
+    ImageView left_icon_product;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -169,6 +170,15 @@ public class category extends AppCompatActivity implements CategoryAdaptor.OnIte
                 Intent iGallery = new Intent(Intent.ACTION_PICK);
                 iGallery.setData(MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
                 startActivityForResult(iGallery, GALLERY_REQ_CODE);
+            }
+        });
+        left_icon_product.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(category.this, "Back", Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(category.this, Admin.class);
+                startActivity(intent);
+                finish(); // Optional: finish the current activity to remove it from the stack
             }
         });
 
