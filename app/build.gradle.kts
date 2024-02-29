@@ -53,6 +53,9 @@ dependencies {
 
     implementation("com.github.Inconnu08:android-ratingreviews:1.2.0") {
         exclude(group = "org.jetbrains", module = "annotations-java5")
+        implementation("com.github.fevziomurtekin:PayView:1.0.3")
+
+
     }
 
 

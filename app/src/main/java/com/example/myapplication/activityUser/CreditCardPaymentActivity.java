@@ -10,6 +10,7 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.example.myapplication.R;
+import com.fevziomurtekin.payview.Payview;
 
 public class CreditCardPaymentActivity extends AppCompatActivity {
 
@@ -20,22 +21,41 @@ public class CreditCardPaymentActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_credit_card_payment); editTextCardNumber = findViewById(R.id.editTextCardNumber);
-        editTextExpirationDate = findViewById(R.id.editTextExpirationDate);
-        editTextCVV = findViewById(R.id.editTextCVV);
-        buttonPay = findViewById(R.id.buttonPay);
+        setContentView(R.layout.activity_credit_card_payment);
 
-        // Set OnClickListener for Pay button
-        buttonPay.setOnClickListener(new View.OnClickListener() {
+        Payview payview = findViewById(R.id.payview);
+        payview.setPayOnclickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // Validate and process payment
+                // after clicking on pay we are displaying toast message as card added.
+                //Toast.makeText(MainActivity.this, "Card Added. ", Toast.LENGTH_SHORT).show();
                 if (validatePayment()) {
                     // Payment is valid, proceed with payment processing
                     processPayment();
-                }
+              }
+
             }
         });
+
+//        editTextCardNumber = findViewById(R.id.editTextCardNumber);
+//        editTextExpirationDate = findViewById(R.id.editTextExpirationDate);
+//        editTextCVV = findViewById(R.id.editTextCVV);
+//        buttonPay = findViewById(R.id.buttonPay);
+
+        // Set OnClickListener for Pay button
+//        buttonPay.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                // Validate and process payment
+//                if (validatePayment()) {
+//                    // Payment is valid, proceed with payment processing
+//                    processPayment();
+//                }
+//            }
+//        });
+
+
+
     }
 
     // Validate payment details
