@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.graphics.Color;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.View;
@@ -20,6 +21,8 @@ import com.example.myapplication.R;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
+import com.taufiqrahman.reviewratings.BarLabels;
+import com.taufiqrahman.reviewratings.RatingReviews;
 
 import java.util.List;
 
@@ -51,13 +54,12 @@ public class ReviewRatingDialog extends AppCompatActivity {
         setContentView(R.layout.activity_review_rating_dialog);
         myDB = new MyDatabaseHelper(ReviewRatingDialog.this);
         reviewRecyclerView = findViewById(R.id.reviewRecyclerview);
+        RatingReviews ratingReviews = findViewById(R.id.rating_reviews);
+
         productName = findViewById(R.id.product_name);
         reviewTitle = findViewById(R.id.review_rating_dialog_title);
         ratingBar = findViewById(R.id.review_rating_dialog_ratingBar);
-        selectedRating = findViewById(R.id.selected_rating);
-        reviewMessage = findViewById(R.id.review_rating_dialog_message);
         reviewTextField = findViewById(R.id.review_text_field);
-        characterCount = findViewById(R.id.character_count);
         submitMediaButton = findViewById(R.id.add_media_button);
         String productNames = getIntent().getStringExtra("productName");
         productName.setText(productNames);
@@ -66,6 +68,28 @@ public class ReviewRatingDialog extends AppCompatActivity {
         reviewList = myDB.getAllReviews();
         reviewAdapter = new ReviewAdaptor(this, reviewList);
         reviewRecyclerView.setAdapter(reviewAdapter);
+
+        int[] ratings = fetchRatingsFromDatabase();
+
+        int raters[] = new int[]{
+                ratings[0], // Assuming ratings are stored in the same order as in the colors array
+                ratings[1],
+                ratings[2],
+                ratings[3],
+                ratings[4]
+        };
+
+        int colors[] = new int[]{
+                Color.parseColor("#0e9d58"),
+                Color.parseColor("#bfd047"),
+                Color.parseColor("#ffc105"),
+                Color.parseColor("#ef7e14"),
+                Color.parseColor("#d36259")
+        };
+
+        ratingReviews.createRatingBars(100, BarLabels.STYPE1, colors, raters);
+
+
 
         submitMediaButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -79,7 +103,7 @@ public class ReviewRatingDialog extends AppCompatActivity {
             }
         });
         setTitle("Leave a review");
-        setMessage("Your review message goes here.");
+       // setMessage("Your review message goes here.");
         reviewAdapter.notifyDataSetChanged();
     }
 
@@ -154,10 +178,15 @@ public class ReviewRatingDialog extends AppCompatActivity {
     }
 
     public void setMessage(String message) {
-        reviewMessage.setText(message);
+   //     reviewMessage.setText(message);
     }
 
     public void setRating(float rating) {
         ratingBar.setRating(rating);
+    }
+
+    private int[] fetchRatingsFromDatabase() {
+        MyDatabaseHelper databaseHelper = new MyDatabaseHelper(this); // Assuming DatabaseHelper is your database helper class
+        return databaseHelper.fetchRatings();
     }
 }

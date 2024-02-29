@@ -51,5 +51,10 @@ dependencies {
     implementation("com.google.code.gson:gson:2.10")
 
 
+    implementation("com.github.Inconnu08:android-ratingreviews:1.2.0") {
+        exclude(group = "org.jetbrains", module = "annotations-java5")
+    }
+
+
 
 }

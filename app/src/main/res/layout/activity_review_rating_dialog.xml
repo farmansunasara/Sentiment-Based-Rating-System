@@ -1,84 +1,86 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:orientation="vertical"
-    android:padding="16dp">
+    android:layout_height="match_parent"
+    android:orientation="vertical">
 
-    <FrameLayout
+    <!-- Include your toolbar layout -->
+    <include layout="@layout/toolbarhome" />
+
+    <!-- Product Name -->
+    <TextView
+        android:id="@+id/product_name"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:text="Your Product Name"
+        android:textStyle="bold"
+        android:textSize="30sp" />
 
-        <TextView
-            android:id="@+id/product_name"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_vertical"
-            android:layout_marginStart="120dp"
-            android:text="Your Product Name"
-            android:textSize="18sp" />
-    </FrameLayout>
+    <!-- Rating Reviews -->
+    <com.taufiqrahman.reviewratings.RatingReviews
+        android:id="@+id/rating_reviews"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:padding="16dp"
+        app:animation="true"
+        app:max_value="100"
+        app:show_label="true"
+        app:spaces="0dp"
+        app:text_color="#333333"
+        app:text_size="20sp" />
 
+    <!-- Leave a Review Title -->
     <TextView
         android:id="@+id/review_rating_dialog_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Leave a review"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:text="Leave a Review"
         android:textSize="24sp"
-        android:textStyle="bold"
-        android:layout_marginTop="16dp" />
+        android:textStyle="bold" />
 
+    <!-- Rating Bar -->
     <RatingBar
         android:id="@+id/review_rating_dialog_ratingBar"
         style="@style/CustomRatingBar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:numStars="5"
-        android:rating="0"
+        android:layout_marginStart="16dp"
         android:layout_marginTop="8dp" />
-    <TextView
-        android:id="@+id/selected_rating"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Rating: 0"
-        android:textSize="16sp" />
 
-    <TextView
-        android:id="@+id/review_rating_dialog_message"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:text="review_message"
-        android:textSize="16sp" />
-
+    <!-- Review Text Field -->
     <EditText
         android:id="@+id/review_text_field"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
         android:layout_marginTop="10dp"
-        android:padding="8dp"
-        android:minHeight="48dp"
+        android:layout_marginEnd="16dp"
         android:hint="Write your review here..."
-        android:inputType="textMultiLine" />
+        android:inputType="textMultiLine"
+        android:minHeight="48dp"
+        android:padding="8dp" />
 
-    <TextView
-        android:id="@+id/character_count"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:text="0 characters remaining" />
-
+    <!-- Submit Button -->
     <Button
         android:id="@+id/add_media_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
-        android:text="submit" />
+        android:layout_gravity="center_horizontal"
+        android:text="Submit" />
 
+    <!-- Review RecyclerView -->
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/reviewRecyclerview"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
         android:paddingTop="20dp" />
-
 
 </LinearLayout>

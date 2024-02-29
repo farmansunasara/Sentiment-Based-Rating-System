@@ -776,6 +776,25 @@ public class MyDatabaseHelper extends SQLiteOpenHelper {
         return reviewList;
     }
 
+    public int[] fetchRatings() {
+        SQLiteDatabase db = getReadableDatabase();
+        Cursor cursor = db.rawQuery("SELECT * FROM " + TABLE_NAME_REVIEWS, null);
+        int[] ratings = new int[5]; // Assuming you have 5 ratings in your table
+
+        if (cursor != null) {
+            if (cursor.moveToFirst()) {
+                int index = 0;
+                do {
+                    // Assuming the rating is stored as a REAL value in the database
+                    // Adjust this based on your actual implementation
+                    ratings[index++] = cursor.getInt(cursor.getColumnIndexOrThrow(COLUMN_RATING));
+                } while (cursor.moveToNext() && index < 5);
+            }
+            cursor.close();
+        }
+
+        return ratings;
+    }
 
 
 }
