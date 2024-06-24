@@ -134,8 +134,8 @@ public class ReviewRatingDialog extends AppCompatActivity {
 
         private float performSentimentAnalysis(String reviewText) {
             try {
-                String apiKey = "e92bbc23d3a94b058114445099f81eb5";
-                String apiUrl = "https://mynewresourceiot.cognitiveservices.azure.com/text/analytics/v3.1/sentiment";
+                //String apiKey = "e92bbc23d3a94b058114445099f81eb5"; you can use your api key
+                //String apiUrl = "https://mynewresourceiot.cognitiveservices.azure.com/text/analytics/v3.1/sentiment";
                 // Construct the request body
                 JsonObject requestBody = new JsonObject();
                 JsonArray documents = new JsonArray();
