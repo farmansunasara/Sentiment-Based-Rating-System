@@ -87,15 +87,41 @@ Sentiment-Based-Rating-System/
 
 ---
 
-## Output Examples
+## App Screenshots
 
-| Sentiment Analysis Result                      | Product Rating Screen                        | Review Submission                          |
-|------------------------------------------------|----------------------------------------------|--------------------------------------------|
-| ![Sentiment Analysis Result](images/sentiment_result.png) | ![Product Rating](images/product_rating.png) | ![Review Submission](images/review_submission.png) |
-
-*Add more rows/images as needed to showcase additional features or screens.*
-
----
+<p align="center">
+  <img src="images/add%20banner.jpg" alt="Add Banner" width="250"/>
+  <img src="images/addproduct.jpg" alt="Add Product" width="250"/>
+  <img src="images/admin%20dashboard.jpg" alt="Admin Dashboard" width="250"/>
+</p>
+<p align="center">
+  <img src="images/carddetails.jpg" alt="Card Details" width="250"/>
+  <img src="images/cart.jpg" alt="Cart" width="250"/>
+  <img src="images/category.jpg" alt="Category" width="250"/>
+</p>
+<p align="center">
+  <img src="images/checkout.jpg" alt="Checkout" width="250"/>
+  <img src="images/customerlist.jpg" alt="Customer List" width="250"/>
+  <img src="images/homepage.jpg" alt="Homepage" width="250"/>
+</p>
+<p align="center">
+  <img src="images/login.jpg" alt="Login" width="250"/>
+  <img src="images/orderlist.jpg" alt="Order List" width="250"/>
+  <img src="images/orderrecive.jpg" alt="Order Receive" width="250"/>
+</p>
+<p align="center">
+  <img src="images/ordersummarry.jpg" alt="Order Summary" width="250"/>
+  <img src="images/paymentselection.jpg" alt="Payment Selection" width="250"/>
+  <img src="images/productdetails.jpg" alt="Product Details" width="250"/>
+</p>
+<p align="center">
+  <img src="images/productlist.jpg" alt="Product List" width="250"/>
+  <img src="images/profile%20page.jpg" alt="Profile Page" width="250"/>
+  <img src="images/rating%20page.jpg" alt="Rating Page" width="250"/>
+</p>
+<p align="center">
+  <img src="images/register.jpg" alt="Register" width="250"/>
+</p>
 
 ## Example Usage
 
